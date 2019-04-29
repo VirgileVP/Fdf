@@ -3,6 +3,9 @@
 # include "libft.h"
 # include "mlx.h"
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 typedef struct		s_coord
 {
@@ -19,7 +22,7 @@ typedef struct		s_fdf
 	int				size_y;
 }					t_fdf;
 
-void				parsing(t_fddf *fdf);
+int					read_map(t_fdf *fdf, int fd);
 void				draw_line(t_fdf *fdf, t_coord p1, t_coord p2);
 
 #endif

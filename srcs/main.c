@@ -2,20 +2,19 @@
 
 int		main(int ac, char **av)
 {
-	t_fdf	*fdf;
+	t_fdf	*data;
 	int		fd;
 
 	fd = 0;
 	if (ac != 2)
 		perror("Specify a map.");
-	if ((fd = open(ac[1], O_RDONLY)) == -1)
+	if ((fd = open(av[1], O_RDONLY)) == -1)
 		perror("Impossible to open file.");
-	if (!(fdf = malloc(sizeof(t_fdf) + 1)))
+	if (!(data = malloc(sizeof(t_fdf) + 1)))
 		return (0);
-	fdf->mlx_ptr = mlx_init();
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1000, 1000, "fdf 42");
-
-	parsing(fdf, );
-	mlx_loop(fdf->mlx_ptr);
-	return 0;
+	read_map(data, fd);
+	/*data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "fdf 42");
+	mlx_loop(data->mlx_ptr);
+	*/return 0;
 }

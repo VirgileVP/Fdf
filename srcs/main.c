@@ -12,9 +12,18 @@ int		main(int ac, char **av)
 		perror("Impossible to open file.");
 	if (!(data = malloc(sizeof(t_fdf) + 1)))
 		return (0);
-	read_map(data, fd);
-	/*data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "fdf 42");
+	if (read_map(data, fd) == -1)
+	{
+		free(data->map);
+		free(data);
+		perror("Reading failed.");
+		exit(1);
+	}
+	data->wind_x = 1600;
+	data->wind_y = 1600;
+	data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->wind_x, data->wind_y, "fdf 42");
+	draw_map(data, data->map);
 	mlx_loop(data->mlx_ptr);
-	*/return 0;
+	return 0;
 }

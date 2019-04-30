@@ -58,6 +58,7 @@ void			ft_putstr_fd(char const *s, int fd);
 char			*ft_strcat(char *s1, const char *s2);
 char			*ft_strcapitalize(char *s);
 char			*ft_strchr(const char *s, int c);
+size_t			ft_strcutlen(const char *s, char c);
 char			*ft_strpbrk(const char *str, const char *charset);
 void			ft_strclr(char *s);
 int				ft_strcmp(const char *s1, const char *s2);

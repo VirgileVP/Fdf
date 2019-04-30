@@ -20,9 +20,12 @@ typedef struct		s_fdf
 	int				**map;
 	int				size_x;
 	int				size_y;
+	int				wind_x;
+	int				wind_y;
 }					t_fdf;
 
 int					read_map(t_fdf *fdf, int fd);
 void				draw_line(t_fdf *fdf, t_coord p1, t_coord p2);
+void				draw_map(t_fdf *fdf, int **map);
 
 #endif

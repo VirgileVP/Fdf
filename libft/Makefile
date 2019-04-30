@@ -101,6 +101,7 @@ STRSRCS=	ft_strcat.c \
 			ft_fstrjoin_end.c \
 			ft_strlcat.c \
 			ft_strlen.c \
+			ft_strcutlen.c \
 			ft_strmap.c \
 			ft_strmapi.c \
 			ft_strncat.c \

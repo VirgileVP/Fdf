@@ -12,6 +12,7 @@ OBJ_DIR = ./objs/
 SRC_DIR = ./srcs/
 
 SRC = main.c \
+	  draw_tools.c \
 	  drawing.c \
 	  parsing.c
 

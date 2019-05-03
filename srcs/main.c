@@ -19,8 +19,8 @@ int		main(int ac, char **av)
 		perror("Reading failed.");
 		exit(1);
 	}
-	data->wind_x = 1600;
-	data->wind_y = 1600;
+	data->wind_x = 500;
+	data->wind_y = 500;
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->wind_x, data->wind_y, "fdf 42");
 	draw_map(data, data->map);

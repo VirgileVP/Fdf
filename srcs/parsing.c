@@ -26,11 +26,11 @@ int		to_int_tab(t_fdf *data, char *read)
 	x = 0;
 	y = 0;
 	data->size_y = size_y(read);
-	if (!(data->map = malloc(sizeof(int*) * data->size_y)))
+	if (!(data->map = malloc(sizeof(t_pixel*) * data->size_y + 1)))
 		return (-1);
 	while (y < data->size_y)
 	{
-		if (!(data->map[y] = malloc(sizeof(int) * data->size_x)))
+		if (!(data->map[y] = malloc(sizeof(t_pixel) * data->size_x + 1)))
 			return (-1);
 		y++;
 	}
@@ -46,7 +46,7 @@ int		to_int_tab(t_fdf *data, char *read)
 		}
 		if (ft_isdigit(read[index]))
 		{
-			data->map[y][x] = ft_atoi(&read[index]);
+			data->map[y][x].height = ft_atoi(&read[index]);
 			index += ft_intlenght(ft_atoi(&read[index])) - 1;
 			x++;
 		}
@@ -59,7 +59,7 @@ int		to_int_tab(t_fdf *data, char *read)
 		x = 0;
 		while (x < data->size_x)
 		{
-			printf("%3d", data->map[y][x]);
+			printf("%3d", data->map[y][x].height);
 			x++;
 		}
 		printf("\n");

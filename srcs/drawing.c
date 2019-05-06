@@ -7,11 +7,11 @@ void		next_draw_x(t_fdf *data, int x, int y, t_coord space)
 
 	if (x + 2 <= data->size_x)
 	{
-		point.x = data->wind_x * 20 / 100 + space.x * x;
-		point.y = data->wind_y * 20 / 100 + space.y * y;
-		point2.x = data->wind_x * 20 / 100 + space.x * (x + 1);
+		point.x = data->screen_max * 20 / 100 + space.x * data->map[y][x].new_x;
+		point.y = data->screen_max * 20 / 100 + space.y * data->map[y][x].new_y;
+		point2.x = data->screen_max * 20 / 100 + space.x * (data->map[y][x].new_x + 1);
 		point2.y = point.y;
-		draw_line(data, point, point2, data->map[y][x]);
+		draw_line(data, point, point2, 0/*data->map[y][x].height*/);
 	}
 }
 
@@ -22,15 +22,19 @@ void		next_draw_y(t_fdf *data, int x, int y, t_coord space)
 
 	if (y + 2 <= data->size_y)
 	{
-		point.x = data->wind_x * 20 / 100 + space.x * x;
-		point.y = data->wind_y * 20 / 100 + space.y * y;
+		point.x = data->screen_max * 20 / 100 + space.x * data->map[y][x].new_x;
+		point.y = data->screen_max * 20 / 100 + space.y * data->map[y][x].new_y;
 		point2.x = point.x;
-		point2.y = data->wind_y * 20 / 100 + space.y * (y + 1);
-		draw_line(data, point, point2, data->map[y][x]);
+		point2.y = data->screen_max * 20 / 100 + space.y * (data->map[y][x].new_y + 1);
+		point.x = 20;
+		point.y = 20;
+		point2.x = 20;
+		point2.y = 40;
+		draw_line(data, point, point2, 0/*data->map[y][x].height*/);
 	}
 }
 
-void		draw_map(t_fdf *data, int **map)
+void		draw_map(t_fdf *data, t_pixel **map)
 {
 	int		x;
 	int		y;
@@ -38,8 +42,9 @@ void		draw_map(t_fdf *data, int **map)
 
 	x = 0;
 	y = 0;
-	space.x = (data->wind_x - data->wind_x * 40 / 100) / data->size_x;
-	space.y = (data->wind_x - data->wind_x * 40 / 100) / data->size_x;
+	data->screen_max = (WIND_X >= WIND_Y) ? WIND_Y : WIND_X ;
+	space.x = (data->screen_max - data->screen_max * (40 / 100)) / data->size_x;
+	space.y = (data->screen_max - data->screen_max * (40 / 100)) / data->size_x;
 	while (y < data->size_y)
 	{
 		x = 0;
@@ -47,6 +52,28 @@ void		draw_map(t_fdf *data, int **map)
 		{
 			next_draw_x(data, x, y, space);
 			next_draw_y(data, x, y, space);
+			x++;
+		}
+		y++;
+	}
+}
+
+void		map_3d_to_2d(t_fdf *data)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	while (y < data->size_y)
+	{
+		x = 0;
+		while (x < data->size_x)
+		{
+			//printf("x = %d   new_x = %d\ny = %d   new_y = %d\n\n", x, x - data->map[y][x].height * x / data->map[y][x].height, y, y - data->map[y][x].height * y / data->map[y][x].height);
+			//printf("height = %d | x = %d | new = %d\n", data->map[y][x].height, x, x + 0.71 * data->map[y][x].height);
+			data->map[y][x].new_x = x;// + 0.81 * data->map[y][x].height;
+			data->map[y][x].new_y = y;// + 0.81 * data->map[y][x].height;
 			x++;
 		}
 		y++;

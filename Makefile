@@ -14,7 +14,11 @@ SRC_DIR = ./srcs/
 SRC = main.c \
 	  draw_tools.c \
 	  drawing.c \
-	  parsing.c
+	  parsing.c \
+	  menu.c \
+	  menu2.c \
+	  events.c \
+	  free_and_exit.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))

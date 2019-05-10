@@ -19,6 +19,8 @@ int		main(int ac, char **av)
 		perror("Reading failed.");
 		exit(1);
 	}
+	data->mlx_ptr = NULL;
+	data->win_ptr = NULL;
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIND_X, WIND_Y, "fdf 42");
 	menu(data);

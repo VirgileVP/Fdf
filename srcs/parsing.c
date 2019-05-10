@@ -16,6 +16,36 @@ int		size_y(char *read)
 	return (ret);
 }
 
+int		init_tab(t_fdf *data, char *read)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	data->size_y = size_y(read);
+	data->map = NULL;
+	if (!(data->map = (t_pixel **)malloc(sizeof(t_pixel*) * data->size_y + 1)))
+		return (-1);
+	while (y < data->size_y)
+	{
+		data->map[y] = NULL;
+		if (!(data->map[y] = (t_pixel *)malloc(sizeof(t_pixel) * data->size_x + 1)))
+			return (-1);
+		printf("map[%d] malloc.\n", y);
+		x = 0;
+		while (x < data->size_x)
+		{
+			data->map[y][x].height = 0;
+			data->map[y][x].new_x = 0;
+			data->map[y][x].new_y = 0;
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
 int		to_int_tab(t_fdf *data, char *read)
 {
 	int index;
@@ -25,16 +55,8 @@ int		to_int_tab(t_fdf *data, char *read)
 	index = 0;
 	x = 0;
 	y = 0;
-	data->size_y = size_y(read);
-	if (!(data->map = malloc(sizeof(t_pixel*) * data->size_y + 1)))
+	if (init_tab(data, read) == -1)
 		return (-1);
-	while (y < data->size_y)
-	{
-		if (!(data->map[y] = malloc(sizeof(t_pixel) * data->size_x + 1)))
-			return (-1);
-		y++;
-	}
-	y = 0;
 	while(read[index])
 	{
 		if (!ft_isdigit(read[index]) && read[index] != ' ' && read[index] != '\n')
@@ -59,10 +81,10 @@ int		to_int_tab(t_fdf *data, char *read)
 		x = 0;
 		while (x < data->size_x)
 		{
-			printf("%3d", data->map[y][x].height);
+			//printf("%3d", data->map[y][x].height);
 			x++;
 		}
-		printf("\n");
+		//printf("\n");
 		y++;
 	}
 	return (1);

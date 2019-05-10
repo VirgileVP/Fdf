@@ -6,7 +6,7 @@ void        pixel_color(t_fdf *fdf, int x, int y , unsigned long high)
         mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, x, y, 0xFFFFFF);
     mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, x, y, high);
 }
-
+/*
 void		draw_diag2(t_fdf *fdf, t_coord start, t_coord end, unsigned long high)
 {
 	int		step;
@@ -63,6 +63,33 @@ void		draw_diag(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long high)
 		end.y = p0.y;
 	}
 	draw_diag2(fdf, start, end, high);
+}*/
+
+void		draw_diag3(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long high)
+{
+	int	dx;
+	int	dy;
+	int	x;
+	int	y;
+	int	temp;
+
+	dx = p1.x - p0.x;
+	dy = p1.y - p0.y;
+	x = p0.x;
+	y = p0.y;
+	temp = 2 * dy - dx;
+	while(x <= p1.x)
+	{
+		if (temp >= 0)
+		{
+			y = y + 1;
+			temp = temp + 2 * dy - 2 * dx;
+		}
+		else
+			temp = temp + 2 * dy;
+		pixel_color(fdf, x, y, high);
+		x++;
+    }
 }
 
 void		draw_line(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long high)
@@ -90,33 +117,5 @@ void		draw_line(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long high)
 		}
 	}
 	else
-		draw_diag(fdf, p0, p1, high);
+		draw_diag3(fdf, p0, p1, high);
 }
-/*
-void		draw_line(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long high)
-{
-	int	dx;
-	int	dy;
-	int	x;
-	int	y;
-	int	temp;
-
-	dx = p1.x - p0.x;
-	dy = p1.y - p0.y;
-	x = p0.x;
-	y = p0.y;
-	temp = 2 * dy - dx;
-	while(x <= p1.x)
-	{
-		if (temp >= 0)
-		{
-			y = y + 1;
-			temp = temp + 2 * dy - 2 * dx;
-		}
-		else
-			temp = temp + 2 * dy;
-		pixel_color(fdf, x, y, high);
-		x++;
-    }
-}
-*/

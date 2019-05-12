@@ -53,10 +53,10 @@ typedef struct		s_line_draw
 {
 	int				diff_y;
 	int				diff_x;
-	int				;
-	int				;
-	int				;
-	int				;
+	int				orient_x;
+	int				orient_y;
+	int				e;
+	int				e2;
 }					t_line_draw;
 
 typedef struct		s_coord

@@ -15,8 +15,6 @@ void		draw_line(t_fdf *fdf, t_coord a, t_coord b, unsigned long high)
 	int	sy;
 	int	e;
 	int e2;
-	printf("diag\n");
-
 
 	dx = abs(b.x - a.x);
 	sx = a.x < b.x ? 1 : -1;

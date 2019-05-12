@@ -9,7 +9,7 @@ void		next_draw_x(t_fdf *data, int x, int y, t_coord space)
 	{
 		point.x = data->screen_max * 20 / 100 + space.x * data->map[y][x].new_x;
 		point.y = data->screen_max * 20 / 100 + space.y * data->map[y][x].new_y;
-		point2.x = data->screen_max * 20 / 100 + space.x * (data->map[y][x].new_x + 1);
+		point2.x = data->screen_max * 20 / 100 + space.x * (data->map[y][x].new_x);
 		point2.y = point.y;
 		draw_line(data, point, point2, 0/*data->map[y][x].height*/);
 	}
@@ -25,11 +25,7 @@ void		next_draw_y(t_fdf *data, int x, int y, t_coord space)
 		point.x = data->screen_max * 20 / 100 + space.x * data->map[y][x].new_x;
 		point.y = data->screen_max * 20 / 100 + space.y * data->map[y][x].new_y;
 		point2.x = point.x;
-		point2.y = data->screen_max * 20 / 100 + space.y * (data->map[y][x].new_y + 1);
-		point.x = 20;
-		point.y = 20;
-		point2.x = 20;
-		point2.y = 40;
+		point2.y = data->screen_max * 20 / 100 + space.y * (data->map[y][x].new_y);
 		draw_line(data, point, point2, 0/*data->map[y][x].height*/);
 	}
 }

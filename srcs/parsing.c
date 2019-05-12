@@ -74,19 +74,6 @@ int		to_int_tab(t_fdf *data, char *read)
 		}
 		index++;
 	}
-	x = 0;
-	y = 0;
-	while (y < data->size_y)
-	{
-		x = 0;
-		while (x < data->size_x)
-		{
-			//printf("%3d", data->map[y][x].height);
-			x++;
-		}
-		//printf("\n");
-		y++;
-	}
 	return (1);
 }
 

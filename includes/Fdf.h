@@ -49,6 +49,16 @@
 # define THREE 20
 # define FOUR 21
 
+typedef struct		s_line_draw
+{
+	int				diff_y;
+	int				diff_x;
+	int				;
+	int				;
+	int				;
+	int				;
+}					t_line_draw;
+
 typedef struct		s_coord
 {
 	int				x;

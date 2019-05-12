@@ -11,26 +11,19 @@ void	all_free(t_fdf *data)
 	{
 		while (y < data->size_y)
 		{
-			//x = 0;
-			//wile (x < data->size_x)
-			//{
-				//printf("map[%d] free.\n", y);
-				//ft_memdel((data)->map[y]);
-			//	x++;
-			//}
+			//ft_memdel((void**)data->map[y]);
 			y++;
 		}
-		//ft_memdel(data->map);
+		ft_memdel((void**)data->map);
 	}
-	ft_memdel(&(data->mlx_ptr));
-	ft_memdel(&data->win_ptr);
-	ft_memdel(&data);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	//ft_memdel((void**)data);
+	printf("data free\n");
 }
 
 int		free_and_escape(t_fdf *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	all_free(data);
+	//all_free(data);
 	exit(0);
 	return (0);
 }

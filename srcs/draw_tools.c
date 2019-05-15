@@ -3,8 +3,11 @@
 void        pixel_color(t_fdf *fdf, int x, int y , unsigned long high)
 {
     if (high == 0)
+	{
+		printf("high = 0.\n");
         mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, x, y, 0xFFFFFF);
-    mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, x, y, high);
+	}
+	mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, x, y, high);
 }
 
 void		draw_line(t_fdf *fdf, t_coord a, t_coord b, unsigned long high)
@@ -23,7 +26,7 @@ void		draw_line(t_fdf *fdf, t_coord a, t_coord b, unsigned long high)
 	e = (dx > dy ? dx : -dy) / 2;
 	while (1)
 	{
-		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, a.x, a.y, high);
+		pixel_color(fdf, a.x, a.y, high);
 		if (a.x == b.x && a.y == b.y)
 			break ;
 		e2 = e;

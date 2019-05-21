@@ -86,6 +86,7 @@ int					read_map(t_fdf *fdf, int fd);
 void				menu(t_fdf *data);
 void				draw_line(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long high);
 void				draw_map(t_fdf *fdf, t_pixel **map);
+void				convert_point(t_fdf *data);
 void				map_3d_to_2d(t_fdf *fdf);
 int					key_event(int key, t_fdf *data);
 int					free_and_escape(t_fdf *data);

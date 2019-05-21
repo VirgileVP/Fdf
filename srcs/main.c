@@ -27,7 +27,8 @@ int		main(int ac, char **av)
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIND_X, WIND_Y, "fdf 42");
 	menu(data);
-	map_3d_to_2d(data);
+	convert_point(data);
+	//map_3d_to_2d(data);
 
 	/*t_coord	point;
 	t_coord	point2;
@@ -45,7 +46,8 @@ int		main(int ac, char **av)
 	draw_line(data, point, point2, 0xFFFFFF);
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, a, b, 0xFF0000);*/
 
-	draw_map(data, data->map);
+	//draw_map(data, data->map);
+	mlx_pixel_put(data->mlx_ptr, data->win_ptr, 10, 10, 0xFF0000);
 	mlx_key_hook(data->win_ptr, key_event, data);
 	mlx_loop(data->mlx_ptr);
 	return (0);

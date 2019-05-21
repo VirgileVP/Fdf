@@ -32,7 +32,6 @@ int		init_tab(t_fdf *data, char *read)
 		data->map[y] = NULL;
 		if (!(data->map[y] = (t_pixel *)malloc(sizeof(t_pixel) * data->size_x + 1)))
 			return (-1);
-		printf("map[%d] malloc.\n", y);
 		x = 0;
 		while (x < data->size_x)
 		{

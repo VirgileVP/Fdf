@@ -1,5 +1,5 @@
 #include "Fdf.h"
-
+/*
 void		next_draw_x(t_fdf *data, int x, int y, t_coord space)
 {
 	t_coord	point;
@@ -73,10 +73,14 @@ void		map_3d_to_2d(t_fdf *data)
 		{
 			//printf("x = %d   new_x = %d\ny = %d   new_y = %d\n\n", x, x - data->map[y][x].height * x / data->map[y][x].height, y, y - data->map[y][x].height * y / data->map[y][x].height);
 			//printf("height = %d | x = %d | new = %d\n", data->map[y][x].height, x, x + 0.71 * data->map[y][x].height);
-			data->map[y][x].new_x = x;// + 0.81 * data->map[y][x].height;
-			data->map[y][x].new_y = y;// + 0.81 * data->map[y][x].height;
+			//data->map[y][x].new_x = x + 0.9 * data->map[y][x].height;
+			//data->map[y][x].new_y = y + 0.9 * data->map[y][x].height;
+			data->map[y][x].new_x = (x * 5) / (data->map[y][x].height + 2.5);
+			data->map[y][x].new_y = (y * 5) / (data->map[y][x].height + 2.5);
+			
 			x++;
 		}
 		y++;
 	}
 }
+*/

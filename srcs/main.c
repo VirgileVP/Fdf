@@ -27,7 +27,7 @@ int		main(int ac, char **av)
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIND_X, WIND_Y, "fdf 42");
 	menu(data);
-	//map_3d_to_2d(data);
+	map_3d_to_2d(data);
 
 	/*t_coord	point;
 	t_coord	point2;

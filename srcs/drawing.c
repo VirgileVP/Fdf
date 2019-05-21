@@ -11,7 +11,7 @@ void		next_draw_x(t_fdf *data, int x, int y, t_coord space)
 		point.y = data->screen_max * 20 / 100 + space.y * data->map[y][x].new_y;
 		point2.x = data->screen_max * 20 / 100 + space.x * (data->map[y][x].new_x + 1);
 		point2.y = point.y;
-		printf("DRAW_X : x1 = %d, x2 = %d, y1 = %d, y2 = %d, new_x = %d, new_y = %d, space_x = %d, space_y = %d\n", point.x, point2.x, point.y, point2.y, y, x, data->map[y][x].new_x, data->map[y][x].new_y, space.x, space.y);
+		//printf("DRAW_X : x1 = %d, x2 = %d, y1 = %d, y2 = %d, new_x = %d, new_y = %d, space_x = %d, space_y = %d\n", point.x, point2.x, point.y, point2.y, y, x, data->map[y][x].new_x, data->map[y][x].new_y, space.x, space.y);
 		draw_line(data, point, point2, 0xffaa00);
 	}
 }
@@ -27,7 +27,9 @@ void		next_draw_y(t_fdf *data, int x, int y, t_coord space)
 		point.y = data->screen_max * 20 / 100 + space.y * data->map[y][x].new_y;
 		point2.x = point.x;
 		point2.y = data->screen_max * 20 / 100 + space.y * (data->map[y][x].new_y + 1);
-		printf("DRAW_Y : x1 = %d, x2 = %d, y1 = %d, y2 = %d, new_x = %d, new_y = %d, space_x = %d, space_y = %d\n", point.x, point2.x, point.y, point2.y, y, x, data->map[y][x].new_x, data->map[y][x].new_y, space.x, space.y);
+		//printf("space_x = %d, space_y = %d\n", space.x, space.y);
+		printf("DRAW_Y : x1 = %d, x2 = %d, y1 = %d, y2 = %d, new_x = %d, new_y = %d, space_x = %d, space_y = %d\n", 
+		point.x, point2.x, point.y, point2.y, data->map[y][x].new_x, data->map[y][x].new_y, space.x, space.y);
 		draw_line(data, point, point2, 0xffaa00);
 	}
 }
@@ -43,6 +45,7 @@ void		draw_map(t_fdf *data, t_pixel **map)
 	data->screen_max = (WIND_X >= WIND_Y) ? WIND_Y : WIND_X ;
 	space.x = (data->screen_max - data->screen_max * (40 / 100)) / data->size_x;
 	space.y = (data->screen_max - data->screen_max * (40 / 100)) / data->size_x;
+	//printf("space_x = %d, space_y = %d\n", space.x, space.y);
 	while (y < data->size_y)
 	{
 		x = 0;

@@ -68,6 +68,8 @@ int		to_int_tab(t_fdf *data, char *read)
 		if (ft_isdigit(read[index]))
 		{
 			data->map[y][x].height = ft_atoi(&read[index]);
+			if (data->map[y][x].height == 0)
+				data->map[y][x].no_high = 1;
 			index += ft_intlenght(ft_atoi(&read[index])) - 1;
 			x++;
 		}

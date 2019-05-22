@@ -22,12 +22,19 @@ int		main(int ac, char **av)
 		perror("Reading failed.");
 		exit(1);
 	}
+	data->x_rot = 0;
+	data->y_rot = 0;
+	data->x_move = 0;
+	data->y_move = 0;
+	data->speed = 1;
+	data->zoom = 0;
+	data->high = 0;
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIND_X, WIND_Y, "fdf 42");
-	menu(data);
-	convert_point(data);
+	HUD(data);
+	convert_draw_map(data);
 	//map_3d_to_2d(data);
 
 	/*t_coord	point;
@@ -47,8 +54,9 @@ int		main(int ac, char **av)
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, a, b, 0xFF0000);*/
 
 	//draw_map(data, data->map);
-	mlx_pixel_put(data->mlx_ptr, data->win_ptr, 10, 10, 0xFF0000);
-	mlx_key_hook(data->win_ptr, key_event, data);
+	mlx_hook(data->win_ptr, 2, 0, key_event, data);
+	mlx_hook(data->win_ptr, 4, 0, mouse_event, data);
+	//mlx_hook(data->win_ptr, 5, 0, key_event, data);
 	mlx_loop(data->mlx_ptr);
 	return (0);
 }

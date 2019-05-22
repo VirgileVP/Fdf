@@ -19,31 +19,13 @@
 # define LESS 78
 # define MORE 69
 # define A 0
-# define B 11
-# define C 8
 # define D 2
-# define E 14
 # define F 3
-# define G 5
-# define H 4
-# define I 34
-# define J 38
-# define K 40
-# define L 37
-# define M 46
-# define N 45
-# define O 31
-# define P 35
-# define Q 12
 # define R 15
 # define S 1
-# define T 17
-# define U 32
-# define V 9
 # define W 13
-# define X 7
-# define Y 16
-# define Z 6
+# define SCROLL_UP 5
+# define SCROLL_DOWN 4
 # define ONE 18
 # define TWO 19
 # define THREE 20
@@ -67,6 +49,7 @@ typedef struct		s_coord
 
 typedef struct		s_pixel
 {
+	int				no_high;
 	int				height;
 	int				new_x;
 	int				new_y;
@@ -77,18 +60,26 @@ typedef struct		s_fdf
 	struct s_pixel	**map;
 	void			*mlx_ptr;
 	void			*win_ptr;
+	float			high;
+	int				zoom;
+	int				speed;
 	int				size_x;
 	int				size_y;
 	int				screen_max;
+	float			x_rot;
+	float			y_rot;
+	float			x_move;
+	float			y_move;
 }					t_fdf;
 
 int					read_map(t_fdf *fdf, int fd);
-void				menu(t_fdf *data);
+void				HUD(t_fdf *data);
 void				draw_line(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long high);
 void				draw_map(t_fdf *fdf, t_pixel **map);
-void				convert_point(t_fdf *data);
+void				convert_draw_map(t_fdf *data);
 void				map_3d_to_2d(t_fdf *fdf);
 int					key_event(int key, t_fdf *data);
+int					mouse_event(int key, int x, int y, t_fdf *data);
 int					free_and_escape(t_fdf *data);
 
 #endif

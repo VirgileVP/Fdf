@@ -16,9 +16,9 @@ SRC = main.c \
 	  drawing.c \
 	  3d_to_2d.c \
 	  parsing.c \
-	  menu.c \
-	  menu2.c \
+	  HUD.c \
 	  events.c \
+	  mouse_event.c \
 	  free_and_exit.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))

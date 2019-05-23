@@ -10,7 +10,6 @@ void	key_rotate(t_fdf *data, int key)
 		data->x_rot -= 1;
 	else if (key == UP)
 		data->x_rot += 1;
-	printf("x_rot = %d | y_rot = %d\n", data->x_rot, data->y_rot);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	HUD(data);
 	convert_draw_map(data);
@@ -53,6 +52,17 @@ void	key_high(t_fdf *data, int key)
 	convert_draw_map(data);
 }
 
+void	key_filter(t_fdf *data, int key)
+{
+	if (data->filter == 3)
+		data->filter = 0;
+	else
+		data->filter++;
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	HUD(data);
+	convert_draw_map(data);
+}
+
 int		key_event(int key, t_fdf *data)
 {
 	if (key == ESC)
@@ -66,5 +76,7 @@ int		key_event(int key, t_fdf *data)
 		key_move(data, key);
 	if (key == R || key == F)
 		key_high(data, key);
+	if (key == DOT)
+		key_filter(data, key);	
 	return (0);
 }

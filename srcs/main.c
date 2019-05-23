@@ -29,6 +29,7 @@ int		main(int ac, char **av)
 	data->speed = 1;
 	data->zoom = 0;
 	data->high = 0;
+	data->filter = 0;
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
 	data->mlx_ptr = mlx_init();

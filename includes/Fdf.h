@@ -24,6 +24,7 @@
 # define R 15
 # define S 1
 # define W 13
+# define DOT 65
 # define SCROLL_UP 5
 # define SCROLL_DOWN 4
 # define ONE 18
@@ -60,16 +61,17 @@ typedef struct		s_fdf
 	struct s_pixel	**map;
 	void			*mlx_ptr;
 	void			*win_ptr;
-	float			high;
-	int				zoom;
 	int				speed;
 	int				size_x;
 	int				size_y;
 	int				screen_max;
-	float			x_rot;
-	float			y_rot;
-	float			x_move;
-	float			y_move;
+	int				filter;
+	double			high;
+	double			zoom;
+	double			x_rot;
+	double			y_rot;
+	double			x_move;
+	double			y_move;
 }					t_fdf;
 
 int					read_map(t_fdf *fdf, int fd);
@@ -80,6 +82,7 @@ void				convert_draw_map(t_fdf *data);
 void				map_3d_to_2d(t_fdf *fdf);
 int					key_event(int key, t_fdf *data);
 int					mouse_event(int key, int x, int y, t_fdf *data);
+void				pixel_color(t_fdf *data, int x, int y , unsigned long high)		;			
 int					free_and_escape(t_fdf *data);
 
 #endif

@@ -24,6 +24,7 @@
 # define R 15
 # define S 1
 # define W 13
+# define C 8
 # define DOT 65
 # define SCROLL_UP 5
 # define SCROLL_DOWN 4
@@ -66,6 +67,7 @@ typedef struct		s_fdf
 	int				size_y;
 	int				screen_max;
 	int				filter;
+	int 			color;
 	double			high;
 	double			zoom;
 	double			x_rot;

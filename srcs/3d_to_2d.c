@@ -10,10 +10,10 @@ void		draw_x(t_fdf *data, int x, int y)
 	point2.x = data->map[y][x + 1].new_x + data->x_move;
 	point2.y = data->map[y][x + 1].new_y + data->y_move;
 	if (data->filter == 1)
-		pixel_color(data, point.x, point.y, 0xffaa00);
+		pixel_color(data, point.x, point.y, 0);
 	if (data->filter == 0 || data->filter == 2)
 	{
-		draw_line(data, point, point2, 0xffaa00);
+		draw_line(data, point, point2, 0);
 	}
 }
 
@@ -27,10 +27,10 @@ void		draw_y(t_fdf *data, int x, int y)
 	point2.x = data->map[y + 1][x].new_x + data->x_move;
 	point2.y = data->map[y + 1][x].new_y + data->y_move;
 	if (data->filter == 1)
-		pixel_color(data, point.x, point.y, 0xffaa00);
+		pixel_color(data, point.x, point.y, 0);
 	if (data->filter == 0 || data->filter == 3)
 	{
-		draw_line(data, point, point2, 0xffaa00);
+		draw_line(data, point, point2, 0);
 	}
 }
 
@@ -65,8 +65,7 @@ void		convert_draw_map(t_fdf *data)
 			data->map[y][x].new_y = data->screen_max * 20 / 100 + y + space.y * y;
 			data->map[y][x].new_x = (data->map[y][x].new_x * 25) / (data->map[y][x].height + 30);
 			data->map[y][x].new_y = (data->map[y][x].new_y * 25) / (data->map[y][x].height + 30);
-			//data->map[y][x].new_x = (cos(data->x_rot) * data->map[y][x].new_x) - (sin(data->x_rot) * data->map[y][x].new_y);
-			//data->map[y][x].new_y = (sin(data->x_rot) * data->map[y][x].new_x) - (cos(data->x_rot) * data->map[y][x].new_y);
+
 			//printf("[%2d:%2d] %4d %4d | ", y, x, data->map[y][x].new_y, data->map[y][x].new_x);
 			x++;
 		}

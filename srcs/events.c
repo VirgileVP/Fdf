@@ -63,6 +63,17 @@ void	key_filter(t_fdf *data, int key)
 	convert_draw_map(data);
 }
 
+void	key_color(t_fdf *data, int key)
+{
+	if (data->color == 9)
+		data->color = 0;
+	else
+		data->color++;
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	HUD(data);
+	convert_draw_map(data);
+}
+
 int		key_event(int key, t_fdf *data)
 {
 	if (key == ESC)
@@ -78,5 +89,7 @@ int		key_event(int key, t_fdf *data)
 		key_high(data, key);
 	if (key == DOT)
 		key_filter(data, key);	
+	if (key == C)
+		key_color(data, key);
 	return (0);
 }

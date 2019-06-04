@@ -44,16 +44,16 @@ typedef struct		s_line_draw
 
 typedef struct		s_coord
 {
-	int				x;
-	int				y;
+	int			x;
+	int			y;
 }					t_coord;
 
 typedef struct		s_pixel
 {
 	int				no_high;
-	int				height;
-	int				new_x;
-	int				new_y;
+	double			height;
+	double			new_x;
+	double			new_y;
 }					t_pixel;
 
 typedef struct		s_fdf

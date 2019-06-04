@@ -52,14 +52,14 @@ void		convert_draw_map(t_fdf *data)
 		{
 			if (data->map[y][x].no_high != 1)
 			{
-				if (data->high == 1 && data->map[y][x].height + 1 == -30)
-					data->map[y][x].height += 2;
+				if (data->high == 1 && data->map[y][x].height * 1.1 == 0)
+					data->map[y][x].height *= 1.2;
 				else if (data->high == 1)
-					data->map[y][x].height++;
-				if (data->high == -1 && data->map[y][x].height - 1 == -30)
-					data->map[y][x].height -= 2;
+					data->map[y][x].height *= 1.1;
+				else if (data->high == -1 && data->map[y][x].height * 0.9 == 0)
+					data->map[y][x].height *= 0.8;
 				else if (data->high == -1)
-					data->map[y][x].height--;
+					data->map[y][x].height *= 0.9;
 			}
 			data->map[y][x].new_x = data->screen_max * 20 / 100 + x + space.x * x;
 			data->map[y][x].new_y = data->screen_max * 20 / 100 + y + space.y * y;

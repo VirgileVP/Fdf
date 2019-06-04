@@ -50,6 +50,7 @@ int		to_int_tab(t_fdf *data, char *read)
 	int index;
 	int	x;
 	int	y;
+	int test = 0;
 
 	index = 0;
 	x = 0;
@@ -58,16 +59,16 @@ int		to_int_tab(t_fdf *data, char *read)
 		return (-1);
 	while(read[index])
 	{
-		if (!ft_isdigit(read[index]) && read[index] != ' ' && read[index] != '\n')
+		if (!ft_isdigit(read[index]) && read[index] != '-' && read[index] != ' ' && read[index] != '\n')
 			return (-1);
 		if (read[index] == '\n')
 		{
 			x = 0;
 			y++;
 		}
-		if (ft_isdigit(read[index]))
+		if (ft_isdigit(read[index]) || read[index] == '-')
 		{
-			data->map[y][x].height = ft_atoi(&read[index]);
+			data->map[y][x].height = (double)ft_atoi(&read[index]);
 			if (data->map[y][x].height == 0)
 				data->map[y][x].no_high = 1;
 			index += ft_intlenght(ft_atoi(&read[index])) - 1;

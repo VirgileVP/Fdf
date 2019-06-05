@@ -22,6 +22,7 @@ int		main(int ac, char **av)
 		perror("Reading failed.");
 		exit(1);
 	}
+	data->projection = 1;
 	data->x_rot = 0;
 	data->y_rot = 0;
 	data->x_move = 0;
@@ -35,27 +36,10 @@ int		main(int ac, char **av)
 	data->win_ptr = NULL;
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIND_X, WIND_Y, "fdf 42");
+	//if ()
+	//data->map[y][x].height = data->map[y][x].height * -1;
 	HUD(data);
-	convert_draw_map(data);
-	//map_3d_to_2d(data);
-
-	/*t_coord	point;
-	t_coord	point2;
-
-	int a = 2;
-	int b = 990;
-
-	printf("%d / %d = %d\n", a, b, a/b);
-	printf("%d %% %d = %d\n", a, b, a%b);
-	
-	point.x = 0;
-	point.y = 0;
-	point2.x = a;
-	point2.y = b;
-	draw_line(data, point, point2, 0xFFFFFF);
-	mlx_pixel_put(data->mlx_ptr, data->win_ptr, a, b, 0xFF0000);*/
-
-	//draw_map(data, data->map);
+	draw_map(data);
 	mlx_hook(data->win_ptr, 2, 0, key_event, data);
 	mlx_hook(data->win_ptr, 4, 0, mouse_event, data);
 	//mlx_hook(data->win_ptr, 5, 0, key_event, data);

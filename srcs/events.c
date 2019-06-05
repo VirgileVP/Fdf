@@ -3,16 +3,16 @@
 void	key_rotate(t_fdf *data, int key)
 {
 	if (key == LEFT)
-		data->y_rot -= 1;
+		data->y_rot -= 0.1;
 	else if (key == RIGHT)
-		data->y_rot += 1;
+		data->y_rot += 0.1;
 	else if (key == DOWN)
-		data->x_rot -= 1;
+		data->x_rot -= 0.1;
 	else if (key == UP)
-		data->x_rot += 1;
+		data->x_rot += 0.1;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	HUD(data);
-	convert_draw_map(data);
+	draw_map(data);
 }
 
 void	key_move(t_fdf *data, int key)
@@ -27,7 +27,7 @@ void	key_move(t_fdf *data, int key)
 		data->y_move += data->speed;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	HUD(data);
-	convert_draw_map(data);
+	draw_map(data);
 }
 
 void	key_speed(t_fdf *data, int key)
@@ -38,7 +38,7 @@ void	key_speed(t_fdf *data, int key)
 		data->speed++;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	HUD(data);
-	convert_draw_map(data);
+	draw_map(data);
 }
 
 void	key_high(t_fdf *data, int key)
@@ -49,7 +49,7 @@ void	key_high(t_fdf *data, int key)
 		data->high = -1;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	HUD(data);
-	convert_draw_map(data);
+	draw_map(data);
 }
 
 void	key_filter(t_fdf *data, int key)
@@ -60,7 +60,7 @@ void	key_filter(t_fdf *data, int key)
 		data->filter++;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	HUD(data);
-	convert_draw_map(data);
+	draw_map(data);
 }
 
 void	key_color(t_fdf *data, int key)
@@ -71,7 +71,19 @@ void	key_color(t_fdf *data, int key)
 		data->color++;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	HUD(data);
-	convert_draw_map(data);
+	draw_map(data);
+}
+
+void	key_projection(t_fdf *data, int key)
+{
+	if (data->projection == 2)
+		data->projection = 1;
+	else
+		data->projection++;
+	data->high = 0;
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	HUD(data);
+	draw_map(data);
 }
 
 int		key_event(int key, t_fdf *data)
@@ -91,5 +103,7 @@ int		key_event(int key, t_fdf *data)
 		key_filter(data, key);	
 	if (key == C)
 		key_color(data, key);
+	if (key == P)
+		key_projection(data, key);
 	return (0);
 }

@@ -19,12 +19,13 @@
 # define LESS 78
 # define MORE 69
 # define A 0
+# define S 1
 # define D 2
 # define F 3
-# define R 15
-# define S 1
-# define W 13
 # define C 8
+# define W 13
+# define R 15
+# define P 35
 # define DOT 65
 # define SCROLL_UP 5
 # define SCROLL_DOWN 4
@@ -62,6 +63,7 @@ typedef struct		s_fdf
 	struct s_pixel	**map;
 	void			*mlx_ptr;
 	void			*win_ptr;
+	int 			projection;
 	int				speed;
 	int				size_x;
 	int				size_y;
@@ -79,8 +81,9 @@ typedef struct		s_fdf
 int					read_map(t_fdf *fdf, int fd);
 void				HUD(t_fdf *data);
 void				draw_line(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long high);
-void				draw_map(t_fdf *fdf, t_pixel **map);
-void				convert_draw_map(t_fdf *data);
+void				draw_map(t_fdf *data);
+void				iso_projection(t_fdf *data, int y, int x);
+void				ortho_projection(t_fdf *data, int y, int x);
 void				map_3d_to_2d(t_fdf *fdf);
 int					key_event(int key, t_fdf *data);
 int					mouse_event(int key, int x, int y, t_fdf *data);

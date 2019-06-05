@@ -13,8 +13,8 @@ void		menu_down(t_fdf *data, t_coord p1, t_coord p2)
 {
 	p1.x = 2;
 	p2.x = 300;
-	p1.y = 175;
-	p2.y = 175;
+	p1.y = 185;
+	p2.y = 185;
 	draw_line(data, p1, p2, 0xffffff);
 }
 void		menu_left(t_fdf *data, t_coord p1, t_coord p2)
@@ -22,7 +22,7 @@ void		menu_left(t_fdf *data, t_coord p1, t_coord p2)
 	p1.x = 2;
 	p2.x = 2;
 	p1.y = 3;
-	p2.y = 175;
+	p2.y = 185;
 	draw_line(data, p1, p2, 0xffffff);
 }
 
@@ -31,7 +31,7 @@ void		menu_right(t_fdf *data, t_coord p1, t_coord p2)
 	p1.x = 300;
 	p2.x = 300;
 	p1.y = 3;
-	p2.y = 175;
+	p2.y = 185;
 	draw_line(data, p1, p2, 0xffffff);
 }
 
@@ -68,5 +68,6 @@ void		HUD(t_fdf *data)
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 95, 0xcccccc, "Ajust high : R F");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 110, 0xcccccc, "Zoom : scroll");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 125, 0xcccccc, "Color : C");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 140, 0xcccccc, "Quit : ESC");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 140, 0xcccccc, "Projection : P");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 5, 155, 0xcccccc, "Quit : ESC");
 }

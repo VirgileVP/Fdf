@@ -71,7 +71,6 @@ int		to_int_tab(t_fdf *data, char *read)
 			data->map[y][x].height = (double)ft_atoi(&read[index]);
 			if (data->map[y][x].height == 0)
 				data->map[y][x].no_high = 1;
-			data->map[y][x].height = data->map[y][x].height * -1;
 			index += ft_intlenght(ft_atoi(&read[index])) - 1;
 			x++;
 		}

@@ -8,6 +8,6 @@ int		mouse_event(int key, int x, int y, t_fdf *data)
 		data->zoom--;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	HUD(data);
-	convert_draw_map(data);
+	draw_map(data);
 	return (0);
 }

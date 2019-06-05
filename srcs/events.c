@@ -45,8 +45,12 @@ void	key_high(t_fdf *data, int key)
 {
 	if (key == R)
 		data->high = 1;
-	if (key == F)
+	else if (key == F)
 		data->high = -1;
+	else if (key == I && data->invert_high == 0)
+		data->invert_high = 1;
+	else if (key == I && data->invert_high == 1)
+		data->invert_high = 0;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	HUD(data);
 	draw_map(data);
@@ -97,7 +101,7 @@ int		key_event(int key, t_fdf *data)
 		key_rotate(data, key);
 	if (key == W || key == A || key == S || key == D)
 		key_move(data, key);
-	if (key == R || key == F)
+	if (key == R || key == F || key == I)
 		key_high(data, key);
 	if (key == DOT)
 		key_filter(data, key);	

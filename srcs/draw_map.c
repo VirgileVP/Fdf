@@ -52,6 +52,12 @@ void		draw_map(t_fdf *data)
 
 	x = 0;
 	y = 0;
+	ft_putnbr(data->size_y);
+	ft_putchar('\n');
+	if (data->invert_high == 1)
+		invert_height(data);
+	ft_putnbr(data->size_y);
+	ft_putchar('\n');
 	data->screen_max = (WIND_X >= WIND_Y) ? WIND_Y : WIND_X ;
 	space.x = data->zoom + (data->screen_max - data->screen_max * (40 / 100)) / data->size_x;
 	space.y = data->zoom + (data->screen_max - data->screen_max * (40 / 100)) / data->size_x;

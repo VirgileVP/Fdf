@@ -20,7 +20,7 @@ int		main(int ac, char **av)
 		free(data->map);
 		free(data);
 		perror("Reading failed.");
-		exit(1);
+		exit(0);
 	}
 	data->projection = 1;
 	data->x_rot = 0;
@@ -30,19 +30,20 @@ int		main(int ac, char **av)
 	data->speed = 1;
 	data->zoom = 0;
 	data->high = 0;
+	data->invert_high = 0;
 	data->filter = 0;
 	data->color = 0;
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIND_X, WIND_Y, "fdf 42");
-	//if ()
-	//data->map[y][x].height = data->map[y][x].height * -1;
+	data->image = mlx_new_image(data->mlx_ptr, WIND_X, WIND_Y);
 	HUD(data);
 	draw_map(data);
 	mlx_hook(data->win_ptr, 2, 0, key_event, data);
 	mlx_hook(data->win_ptr, 4, 0, mouse_event, data);
 	//mlx_hook(data->win_ptr, 5, 0, key_event, data);
 	mlx_loop(data->mlx_ptr);
+	exit(0);
 	return (0);
 }

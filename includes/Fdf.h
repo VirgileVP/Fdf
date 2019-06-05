@@ -25,6 +25,7 @@
 # define C 8
 # define W 13
 # define R 15
+# define I 34
 # define P 35
 # define DOT 65
 # define SCROLL_UP 5
@@ -63,6 +64,7 @@ typedef struct		s_fdf
 	struct s_pixel	**map;
 	void			*mlx_ptr;
 	void			*win_ptr;
+	int				*image;
 	int 			projection;
 	int				speed;
 	int				size_x;
@@ -71,6 +73,7 @@ typedef struct		s_fdf
 	int				filter;
 	int 			color;
 	double			high;
+	int				invert_high;
 	double			zoom;
 	double			x_rot;
 	double			y_rot;
@@ -84,6 +87,7 @@ void				draw_line(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long high);
 void				draw_map(t_fdf *data);
 void				iso_projection(t_fdf *data, int y, int x);
 void				ortho_projection(t_fdf *data, int y, int x);
+void				invert_height(t_fdf *data);
 void				map_3d_to_2d(t_fdf *fdf);
 int					key_event(int key, t_fdf *data);
 int					mouse_event(int key, int x, int y, t_fdf *data);

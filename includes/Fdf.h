@@ -53,18 +53,22 @@ typedef struct		s_coord
 
 typedef struct		s_pixel
 {
-	int				no_high;
+	int				no_height;
 	double			height;
 	double			new_x;
 	double			new_y;
-}					t_pixel;
+}					t_pixel; 
 
 typedef struct		s_fdf
 {
 	struct s_pixel	**map;
 	void			*mlx_ptr;
 	void			*win_ptr;
+	void			*img_ptr;
 	int				*image;
+	int				bpp;
+	int				s_l;
+	int				endian;
 	int 			projection;
 	int				speed;
 	int				size_x;
@@ -72,8 +76,8 @@ typedef struct		s_fdf
 	int				screen_max;
 	int				filter;
 	int 			color;
-	double			high;
-	int				invert_high;
+	double			height;
+	int				invert_height;
 	double			zoom;
 	double			x_rot;
 	double			y_rot;
@@ -83,15 +87,16 @@ typedef struct		s_fdf
 
 int					read_map(t_fdf *fdf, int fd);
 void				HUD(t_fdf *data);
-void				draw_line(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long high);
+void				draw_line(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long height);
 void				draw_map(t_fdf *data);
+void				do_rotate(t_fdf *data, int y, int x);
 void				iso_projection(t_fdf *data, int y, int x);
 void				ortho_projection(t_fdf *data, int y, int x);
 void				invert_height(t_fdf *data);
-void				map_3d_to_2d(t_fdf *fdf);
+void				HUD_text(t_fdf *data);
 int					key_event(int key, t_fdf *data);
 int					mouse_event(int key, int x, int y, t_fdf *data);
-void				pixel_color(t_fdf *data, int x, int y , unsigned long high)		;			
+void				pixel_color(t_fdf *data, int x, int y , unsigned long height);			
 int					free_and_escape(t_fdf *data);
 
 #endif

@@ -13,9 +13,9 @@ SRC_DIR = ./srcs/
 
 SRC = main.c \
 	  draw_tools.c \
-	  drawing.c \
 	  draw_map.c \
 	  3d_to_2d.c \
+	  rotate.c \
 	  parsing.c \
 	  HUD.c \
 	  events.c \

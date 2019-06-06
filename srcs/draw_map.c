@@ -34,16 +34,6 @@ void		draw_y(t_fdf *data, int x, int y)
 	}
 }
 
-void		do_rotate(t_fdf *data, int y, int x)
-{
-	data->map[y][x].new_x = x;
-	data->map[y][x].new_y = data->map[y][x].new_y * cos(data->x_rot) + data->map[y][x].height * sin(data->x_rot);
-	data->map[y][x].height = -data->map[y][x].new_y * sin(data->x_rot) + data->map[y][x].height * cos(data->x_rot);
-	data->map[y][x].new_x = data->map[y][x].new_x * cos(data->y_rot) + data->map[y][x].height * sin(data->y_rot);
-	data->map[y][x].new_y = -data->map[y][x].new_y * sin(data->y_rot) + data->map[y][x].height * cos(data->y_rot);
-
-}
-
 void		draw_map(t_fdf *data)
 {
 	int		x;
@@ -52,12 +42,12 @@ void		draw_map(t_fdf *data)
 
 	x = 0;
 	y = 0;
-	ft_putnbr(data->size_y);
-	ft_putchar('\n');
-	if (data->invert_high == 1)
+	data->img_ptr = mlx_destroy_image(data->mlx_ptr, data->img_ptr);
+	data->img_ptr = mlx_new_image(data->mlx_ptr, WIND_X, WIND_Y);
+	data->image = (int *)mlx_get_data_addr(data->img_ptr, &(data->bpp), &(data->s_l), &(data->endian));
+	if (data->invert_height == 1)
 		invert_height(data);
-	ft_putnbr(data->size_y);
-	ft_putchar('\n');
+	HUD(data);
 	data->screen_max = (WIND_X >= WIND_Y) ? WIND_Y : WIND_X ;
 	space.x = data->zoom + (data->screen_max - data->screen_max * (40 / 100)) / data->size_x;
 	space.y = data->zoom + (data->screen_max - data->screen_max * (40 / 100)) / data->size_x;
@@ -66,24 +56,24 @@ void		draw_map(t_fdf *data)
 		x = 0;
 		while (x < data->size_x)
 		{
-			if (data->map[y][x].no_high != 1)
-			{
-				if (data->high == 1 && data->map[y][x].height * 1.1 == 0)
-					data->map[y][x].height *= 1.2;
-				else if (data->high == 1)
-					data->map[y][x].height *= 1.1;
-				else if (data->high == -1 && data->map[y][x].height * 0.9 == 0)
-					data->map[y][x].height *= 0.8;
-				else if (data->high == -1)
-					data->map[y][x].height *= 0.9;
-			}
 			data->map[y][x].new_x = data->screen_max * 20 / 100 + x + space.x * x;
 			data->map[y][x].new_y = data->screen_max * 20 / 100 + y + space.y * y;
+			//do_rotate(data, y, x);
+			if (data->map[y][x].no_height != 1)
+			{
+				if (data->height == 1 && data->map[y][x].height * 1.1 == 0)
+					data->map[y][x].height *= 1.2;
+				else if (data->height == 1)
+					data->map[y][x].height *= 1.1;
+				else if (data->height == -1 && data->map[y][x].height * 0.9 == 0)
+					data->map[y][x].height *= 0.8;
+				else if (data->height == -1)
+					data->map[y][x].height *= 0.9;
+			}
 			if (data->projection == 1)
 				iso_projection(data, y, x);
 			else if (data->projection == 2)
 				ortho_projection(data, y, x);
-			//do_rotate(data, y, x);
 			//printf("[%2d:%2d] %4d %4d | ", y, x, data->map[y][x].new_y, data->map[y][x].new_x);
 			x++;
 		}
@@ -108,8 +98,7 @@ void		draw_map(t_fdf *data)
 		}
 		y++;
 	}
-	data->high = 0;
-	data->x_rot = 0;
-	data->y_rot = 0;
-	//printf("\nfinish\n");
+	data->height = 0;
+	mlx_put_image_to_window(data->image, data->win_ptr, data->img_ptr, 0, 0);
+	HUD_text(data);
 }

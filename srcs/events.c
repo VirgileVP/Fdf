@@ -3,15 +3,14 @@
 void	key_rotate(t_fdf *data, int key)
 {
 	if (key == LEFT)
-		data->y_rot -= 0.1;
+		data->y_rot -= 0.2;
 	else if (key == RIGHT)
-		data->y_rot += 0.1;
+		data->y_rot += 0.2;
 	else if (key == DOWN)
-		data->x_rot -= 0.1;
+		data->x_rot -= 0.2;
 	else if (key == UP)
-		data->x_rot += 0.1;
+		data->x_rot += 0.2;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	HUD(data);
 	draw_map(data);
 }
 
@@ -26,7 +25,6 @@ void	key_move(t_fdf *data, int key)
 	else if (key == S)
 		data->y_move += data->speed;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	HUD(data);
 	draw_map(data);
 }
 
@@ -37,22 +35,20 @@ void	key_speed(t_fdf *data, int key)
 	if (key == MORE)
 		data->speed++;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	HUD(data);
 	draw_map(data);
 }
 
-void	key_high(t_fdf *data, int key)
+void	key_height(t_fdf *data, int key)
 {
 	if (key == R)
-		data->high = 1;
+		data->height = 1;
 	else if (key == F)
-		data->high = -1;
-	else if (key == I && data->invert_high == 0)
-		data->invert_high = 1;
-	else if (key == I && data->invert_high == 1)
-		data->invert_high = 0;
+		data->height = -1;
+	else if (key == I && data->invert_height == 0)
+		data->invert_height = 1;
+	else if (key == I && data->invert_height == 1)
+		data->invert_height = 0;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	HUD(data);
 	draw_map(data);
 }
 
@@ -63,7 +59,6 @@ void	key_filter(t_fdf *data, int key)
 	else
 		data->filter++;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	HUD(data);
 	draw_map(data);
 }
 
@@ -74,7 +69,6 @@ void	key_color(t_fdf *data, int key)
 	else
 		data->color++;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	HUD(data);
 	draw_map(data);
 }
 
@@ -84,9 +78,8 @@ void	key_projection(t_fdf *data, int key)
 		data->projection = 1;
 	else
 		data->projection++;
-	data->high = 0;
+	data->height = 0;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	HUD(data);
 	draw_map(data);
 }
 
@@ -102,7 +95,7 @@ int		key_event(int key, t_fdf *data)
 	if (key == W || key == A || key == S || key == D)
 		key_move(data, key);
 	if (key == R || key == F || key == I)
-		key_high(data, key);
+		key_height(data, key);
 	if (key == DOT)
 		key_filter(data, key);	
 	if (key == C)

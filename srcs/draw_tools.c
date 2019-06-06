@@ -1,32 +1,43 @@
 #include "Fdf.h"
 
-void		pixel_color(t_fdf *data, int x, int y , unsigned long high)
+void		put_pixel(t_fdf *data, int x, int y , unsigned long height)
 {
-	if (high != 0)
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, high);
-    else if (data->color == 0)
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0xFFFFFF);
-	else if (data->color == 1)
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000);
-	else if (data->color == 2)
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0x00FF00);
-	else if (data->color == 3)
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0x0000FF);
-	else if (data->color == 4)
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0xFFaa00);
-	else if (data->color == 5)
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0x00aaFF);
-	else if (data->color == 6)
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0xaa00FF);
-	else if (data->color == 7)
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0xEEDDFF);
-	else if (data->color == 8)
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0xCCCCFF);
-	else if (data->color == 9)
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0xFFEECC);
+	int		index;
+
+	if (x >= 0 && x <= WIND_X && y >= 0 && y <= WIND_Y)
+	{
+		index = y * WIND_X + x;
+		data->image[index] = height;
+	}
 }
 
-void		draw_line(t_fdf *data, t_coord a, t_coord b, unsigned long high)
+void		pixel_color(t_fdf *data, int x, int y , unsigned long height)
+{
+	if (height != 0)
+		put_pixel(data, x, y, height);
+    else if (data->color == 0)
+		put_pixel(data, x, y, 0xFFFFFF);
+	else if (data->color == 1)
+		put_pixel(data, x, y, 0xFF0000);
+	else if (data->color == 2)
+		put_pixel(data, x, y, 0x00FF00);
+	else if (data->color == 3)
+		put_pixel(data, x, y, 0x0000FF);
+	else if (data->color == 4)
+		put_pixel(data, x, y, 0xFFaa00);
+	else if (data->color == 5)
+		put_pixel(data, x, y, 0x00aaFF);
+	else if (data->color == 6)
+		put_pixel(data, x, y, 0xaa00FF);
+	else if (data->color == 7)
+		put_pixel(data, x, y, 0xEEDDFF);
+	else if (data->color == 8)
+		put_pixel(data, x, y, 0xCCCCFF);
+	else if (data->color == 9)
+		put_pixel(data, x, y, 0xFFEECC);
+}
+
+void		draw_line(t_fdf *data, t_coord a, t_coord b, unsigned long height)
 {
 	int	dx;
 	int	dy;
@@ -43,7 +54,7 @@ void		draw_line(t_fdf *data, t_coord a, t_coord b, unsigned long high)
 	while (1)
 	{
 		if(a.x >= 0 && a.x <= WIND_X && a.y >= 0 && a.y <= WIND_Y)
-			pixel_color(data, a.x, a.y, high);
+			pixel_color(data, a.x, a.y, height);
 		if (a.x == b.x && a.y == b.y)
 			break ;
 		e2 = e;

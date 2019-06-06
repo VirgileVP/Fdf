@@ -18,7 +18,7 @@ void	invert_height(t_fdf *data)
 		}
 		y++;
 	}
-	data->invert_high = 0;
+	data->invert_height = 0;
 }
 
 void	iso_projection(t_fdf *data, int y, int x)

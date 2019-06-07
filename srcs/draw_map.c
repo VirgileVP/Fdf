@@ -43,11 +43,8 @@ void		draw_map(t_fdf *data)
 	x = 0;
 	y = 0;
 	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
-	ft_putstr("image destroy\n");
 	data->img_ptr = mlx_new_image(data->mlx_ptr, WIND_X, WIND_Y);
-	ft_putstr("new image create\n");
-	data->image = (int *)mlx_get_data_addr(data->img_ptr, &(data->bpp), &(data->s_l), &(data->endian));
-	ft_putstr("get_data_addr\n");
+	data->image = mlx_get_data_addr(data->img_ptr, &(data->bpp), &(data->s_l), &(data->endian));
 	if (data->invert_height == 1)
 		invert_height(data);
 	HUD(data);
@@ -96,7 +93,8 @@ void		draw_map(t_fdf *data)
 		}
 		y++;
 	}
-	data->height = 0;
 	mlx_put_image_to_window(data->image, data->win_ptr, data->img_ptr, 0, 0);
 	HUD_text(data);
+	data->height = 0;
+	data->invert_height = 0;
 }

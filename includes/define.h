@@ -2,7 +2,7 @@
 # define DEFINE_H
 
 # define WIND_X 1400
-# define WIND_Y 1000
+# define WIND_Y 1150
 # define BORDURE -10000
 
 # define ESC 53
@@ -24,10 +24,15 @@
 # define DOT 65
 # define SCROLL_UP 5
 # define SCROLL_DOWN 4
-# define ONE 18
-# define TWO 19
-# define THREE 20
-# define FOUR 21
+# define KEY_1 83
+# define KEY_2 84
+# define KEY_3 85
+# define KEY_4 86
+# define KEY_5 87
+# define KEY_6 88
+# define KEY_7 89
+# define KEY_8 90
+# define KEY_9 91
 /*
 # define WHITE 
 # define HOT_WARM 

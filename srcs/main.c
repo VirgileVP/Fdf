@@ -32,15 +32,17 @@ int		main(int ac, char **av)
 	data->height = 0;
 	data->invert_height = 0;
 	data->filter = 0;
-	data->color = 0;
+	data->color = 4;
+	data->r = 255;
+	data->g = 255;
+	data->b = 255;
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIND_X, WIND_Y, "FDF  VVEYRAT-");
 
 	data->img_ptr = mlx_new_image(data->mlx_ptr, WIND_X, WIND_Y);
-	data->image = (int *)mlx_get_data_addr(data->img_ptr, &(data->bpp), &(data->s_l), &(data->endian));
-
+	data->image = mlx_get_data_addr(data->img_ptr, &(data->bpp), &(data->s_l), &(data->endian));
 
 	draw_map(data);
 	mlx_hook(data->win_ptr, 2, 0, key_event, data);

@@ -4,10 +4,15 @@ void		put_pixel(t_fdf *data, int x, int y , int height)
 {
 	int		index;
 
-	if (x >= 0 && x <= WIND_X && y >= 0 && y < WIND_Y)
+	if (x >= 0 && x <= WIND_X * 4 && y >= 150 && y < WIND_Y * 4)
 	{
 		index = y * WIND_X + x;
-		data->image[index] = height;
+		index = index * 4;
+		//data->image[index] = height;
+		data->image[index] = data->b;
+		data->image[index + 1] = data->g;
+		data->image[index + 2] = data->r;
+		data->image[index + 3] = 0;
 	}
 }
 

@@ -9,34 +9,6 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WIND_X 1400
-# define WIND_Y 1000
-# define BORDURE -10000
-
-# define ESC 53
-# define LEFT 123
-# define RIGHT 124
-# define DOWN 125
-# define UP 126
-# define LESS 78
-# define MORE 69
-# define A 0
-# define S 1
-# define D 2
-# define F 3
-# define C 8
-# define W 13
-# define R 15
-# define I 34
-# define P 35
-# define DOT 65
-# define SCROLL_UP 5
-# define SCROLL_DOWN 4
-# define ONE 18
-# define TWO 19
-# define THREE 20
-# define FOUR 21
-
 typedef struct		s_line_draw
 {
 	int				diff_y;
@@ -67,7 +39,7 @@ typedef struct		s_fdf
 	void			*mlx_ptr;
 	void			*win_ptr;
 	void			*img_ptr;
-	int				*image;
+	char			*image;
 	int				bpp;
 	int				s_l;
 	int				endian;
@@ -78,6 +50,9 @@ typedef struct		s_fdf
 	int				screen_max;
 	int				filter;
 	int 			color;
+	int				r;
+	int				g;
+	int				b;
 	double			height;
 	int				invert_height;
 	double			zoom;

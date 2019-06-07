@@ -10,11 +10,9 @@ void		draw_x(t_fdf *data, int x, int y)
 	point2.x = data->map[y][x + 1].new_x + data->x_move;
 	point2.y = data->map[y][x + 1].new_y + data->y_move;
 	if (data->filter == 1)
-		pixel_color(data, point.x, point.y, 0);
+		put_pixel(data, point.x, point.y);
 	if (data->filter == 0 || data->filter == 2)
-	{
-		draw_line(data, point, point2, 0);
-	}
+		draw_line(data, point, point2);
 }
 
 void		draw_y(t_fdf *data, int x, int y)
@@ -27,11 +25,9 @@ void		draw_y(t_fdf *data, int x, int y)
 	point2.x = data->map[y + 1][x].new_x + data->x_move;
 	point2.y = data->map[y + 1][x].new_y + data->y_move;
 	if (data->filter == 1)
-		pixel_color(data, point.x, point.y, 0);
+		put_pixel(data, point.x, point.y);
 	if (data->filter == 0 || data->filter == 3)
-	{
-		draw_line(data, point, point2, 0);
-	}
+		draw_line(data, point, point2);
 }
 
 void		draw_map(t_fdf *data)
@@ -48,16 +44,17 @@ void		draw_map(t_fdf *data)
 	if (data->invert_height == 1)
 		invert_height(data);
 	HUD(data);
-	data->screen_max = (WIND_X >= WIND_Y) ? WIND_Y : WIND_X ;
-	space.x = data->zoom + (data->screen_max - data->screen_max * (40 / 100)) / data->size_x;
-	space.y = data->zoom + (data->screen_max - data->screen_max * (40 / 100)) / data->size_x;
+	data->screen_max = (WIND_X <= WIND_Y - 150) ? WIND_Y - 150 : WIND_X ;
+	space.x = data->zoom + (data->screen_max - (data->screen_max * 0.5)) / data->size_x;
+	space.y = data->zoom + (data->screen_max - (data->screen_max * 0.5)) / data->size_x;
+	printf("x:%d  y:%d\n", space.x, space.y);
 	while (y < data->size_y)
 	{
 		x = 0;
 		while (x < data->size_x)
 		{
-			data->map[y][x].new_x = data->screen_max * 20 / 100 + x + space.x * x;
-			data->map[y][x].new_y = data->screen_max * 20 / 100 + y + space.y * y;
+			data->map[y][x].new_x = data->screen_max * 0.4 + space.x * x + x;
+			data->map[y][x].new_y = data->screen_max * 0.4 + space.y * y + y;
 			//do_rotate(data, y, x);
 			if (data->map[y][x].no_height != 1)
 			{

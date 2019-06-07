@@ -64,7 +64,7 @@ typedef struct		s_fdf
 
 int					read_map(t_fdf *fdf, int fd);
 void				HUD(t_fdf *data);
-void				draw_line(t_fdf *fdf, t_coord p0, t_coord p1, unsigned long height);
+void				draw_line(t_fdf *fdf, t_coord p0, t_coord p1);
 void				draw_map(t_fdf *data);
 void				do_rotate(t_fdf *data, int y, int x);
 void				iso_projection(t_fdf *data, int y, int x);
@@ -73,7 +73,7 @@ void				invert_height(t_fdf *data);
 void				HUD_text(t_fdf *data);
 int					key_event(int key, t_fdf *data);
 int					mouse_event(int key, int x, int y, t_fdf *data);
-void				pixel_color(t_fdf *data, int x, int y , unsigned long height);			
+void				put_pixel(t_fdf *data, int x, int y);
 int					free_and_escape(t_fdf *data);
 
 #endif

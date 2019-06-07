@@ -1,6 +1,6 @@
 #include "Fdf.h"
 
-void		put_pixel(t_fdf *data, int x, int y , int height)
+void		put_pixel(t_fdf *data, int x, int y)
 {
 	int		index;
 
@@ -8,7 +8,6 @@ void		put_pixel(t_fdf *data, int x, int y , int height)
 	{
 		index = y * WIND_X + x;
 		index = index * 4;
-		//data->image[index] = height;
 		data->image[index] = data->b;
 		data->image[index + 1] = data->g;
 		data->image[index + 2] = data->r;
@@ -16,33 +15,7 @@ void		put_pixel(t_fdf *data, int x, int y , int height)
 	}
 }
 
-void		pixel_color(t_fdf *data, int x, int y , unsigned long height)
-{
-	if (height != 0)
-		put_pixel(data, x, y, height);
-    else if (data->color == 0)
-		put_pixel(data, x, y, 0xFFFFFF);
-	else if (data->color == 1)
-		put_pixel(data, x, y, 0xFF0000);
-	else if (data->color == 2)
-		put_pixel(data, x, y, 0x00FF00);
-	else if (data->color == 3)
-		put_pixel(data, x, y, 0x0000FF);
-	else if (data->color == 4)
-		put_pixel(data, x, y, 0xFFaa00);
-	else if (data->color == 5)
-		put_pixel(data, x, y, 0x00aaFF);
-	else if (data->color == 6)
-		put_pixel(data, x, y, 0xaa00FF);
-	else if (data->color == 7)
-		put_pixel(data, x, y, 0xEEDDFF);
-	else if (data->color == 8)
-		put_pixel(data, x, y, 0xCCCCFF);
-	else if (data->color == 9)
-		put_pixel(data, x, y, 0xFFEECC);
-}
-
-void		draw_line(t_fdf *data, t_coord a, t_coord b, unsigned long height)
+void		draw_line(t_fdf *data, t_coord a, t_coord b)
 {
 	int	dx;
 	int	dy;
@@ -59,7 +32,7 @@ void		draw_line(t_fdf *data, t_coord a, t_coord b, unsigned long height)
 	while (1)
 	{
 		if(a.x >= 0 && a.x <= WIND_X && a.y >= 0 && a.y <= WIND_Y)
-			pixel_color(data, a.x, a.y, height);
+			put_pixel(data, a.x, a.y);
 		if (a.x == b.x && a.y == b.y)
 			break ;
 		e2 = e;

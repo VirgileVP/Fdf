@@ -2,7 +2,7 @@ NAME = fdf
 
 
 CC = GCC
-CFLAGS =  -g
+CFLAGS =  -g -fsanitize=address
 CPPFLAGS = -I ./includes -I ./libft -I ./minilibx_macos
 
 LIB = libft/libft.a

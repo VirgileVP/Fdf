@@ -1,6 +1,6 @@
 #include "Fdf.h"
 
-void		put_pixel(t_fdf *data, int x, int y , unsigned long height)
+void		put_pixel(t_fdf *data, int x, int y , int height)
 {
 	int		index;
 

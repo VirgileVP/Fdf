@@ -6,7 +6,7 @@
 #    By: vveyrat- <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/04 10:38:57 by vveyrat-     #+#   ##    ##    #+#        #
-#    Updated: 2018/11/22 01:33:30 by vveyrat-    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/06/06 16:15:05 by vveyrat-    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,6 +20,7 @@ CONVERT= convert/
 INT= int/
 IS= is/
 LST= lst/
+MATH= math/
 MEM= mem/
 OTHER= other/
 PUT= put/
@@ -44,7 +45,8 @@ ISSRCS=		ft_isalpha.c \
 			ft_isdigit.c \
 			ft_isprint.c \
 			ft_isspace.c \
-			ft_incharset.c
+			ft_incharset.c \
+			ft_is_strdigit.c
 
 
 LSTSRCS=	ft_lstadd.c \
@@ -54,6 +56,10 @@ LSTSRCS=	ft_lstadd.c \
 			ft_lstmap.c \
 			ft_lstnew.c \
 
+
+MATHSRCS=   ft_power.c \
+			ft_facto.c 
+			
 
 MEMSRCS=	ft_memalloc.c \
 			ft_memccpy.c \
@@ -122,6 +128,7 @@ SRCS= 	$(addprefix $(CONVERT),$(CONVERTSRCS)) \
 		$(addprefix $(INT),$(INTSRCS)) \
 		$(addprefix $(IS),$(ISSRCS)) \
 		$(addprefix $(LST),$(LSTSRCS)) \
+		$(addprefix $(MATH),$(MATHSRCS)) \
 		$(addprefix $(MEM),$(MEMSRCS)) \
 		$(addprefix $(OTHER),$(OTHERSRCS)) \
 		$(addprefix $(PUT),$(PUTSRCS)) \
@@ -134,24 +141,34 @@ all: $(NAME)
 
 %.o: %.c
 	@$(COMP) -o $@ -c $<
+	@if test -s $*.c; then \
+	echo "\033[2mCompiling $*.c ......\033[0;32m  [COMPILED]\033[00m"; \
+	else \
+	echo "\033[3mCompiling $*.c ......\033[00m\  [FAILED]"; fi
 
 $(NAME): $(OBJ)
-	@printf "LIBFT : libft.a done\n"
+	@echo "\033[0;34m|---------------------------------|\033[0m"
+	@echo "\033[0;34m|----------\033[1;34mCREATED LIBFT\033[0;34m----------|\033[0m"
+	@echo "\033[0;34m|---------------------------------|\033[0m"
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@printf "\n"
 
 clean:
-	@printf "LIBFT : *.o files deleted\n"
 	@rm -f */*.o
-	@printf "\n"
+	@echo "\033[0;33m|---------------------------------|\033[0m"
+	@echo "\033[0;33m|-------\033[1;33mDELETED OBJECT FILES\033[0;33m------|\033[0m"
+	@echo "\033[0;33m|---------------------------------|\033[0m"
+	@echo ""
 
 fclean: clean
-	@printf "LIBFT : libft.a deleted\n"
 	@rm -f $(NAME)
-	@printf "\n"
+	@echo "\033[0;31m|---------------------------------|\033[0m"
+	@echo "\033[0;31m|---------\033[1;31mDELETED LIBFT.A\033[0;31m---------|\033[0m"
+	@echo "\033[0;31m|---------------------------------|\033[0m"
+	@echo ""
 
 re: fclean all
 
 .PHONY: all clean fclean re
-.SILENT: all $(NAME)$(OBJ) clean fclean re
+.SILENT: all $(NAME)$(OBJ)

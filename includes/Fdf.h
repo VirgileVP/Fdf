@@ -2,10 +2,12 @@
 # define FDF_H
 # include "libft.h"
 # include "mlx.h"
+# include "define.h"
 # include <stdio.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <math.h>
 
 # define WIND_X 1400
 # define WIND_Y 1000

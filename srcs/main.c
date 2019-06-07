@@ -45,7 +45,6 @@ int		main(int ac, char **av)
 	draw_map(data);
 	mlx_hook(data->win_ptr, 2, 0, key_event, data);
 	mlx_hook(data->win_ptr, 4, 0, mouse_event, data);
-	//mlx_hook(data->win_ptr, 5, 0, key_event, data);
 	mlx_loop(data->mlx_ptr);
 	exit(0);
 	return (0);

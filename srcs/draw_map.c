@@ -42,9 +42,12 @@ void		draw_map(t_fdf *data)
 
 	x = 0;
 	y = 0;
-	data->img_ptr = mlx_destroy_image(data->mlx_ptr, data->img_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
+	ft_putstr("image destroy\n");
 	data->img_ptr = mlx_new_image(data->mlx_ptr, WIND_X, WIND_Y);
+	ft_putstr("new image create\n");
 	data->image = (int *)mlx_get_data_addr(data->img_ptr, &(data->bpp), &(data->s_l), &(data->endian));
+	ft_putstr("get_data_addr\n");
 	if (data->invert_height == 1)
 		invert_height(data);
 	HUD(data);
@@ -74,10 +77,8 @@ void		draw_map(t_fdf *data)
 				iso_projection(data, y, x);
 			else if (data->projection == 2)
 				ortho_projection(data, y, x);
-			//printf("[%2d:%2d] %4d %4d | ", y, x, data->map[y][x].new_y, data->map[y][x].new_x);
 			x++;
 		}
-		//printf("\n");
 		y++;
 	}
 	x = 0;
@@ -87,9 +88,6 @@ void		draw_map(t_fdf *data)
 		x = 0;
 		while (x < data->size_x)
 		{
-			//printf("y = %2d,  x = %2d",y, x);
-			//printf("\nsize_y = %2d, size_x = %2d, map[%2d][%2d] : new_x = %4d | new_y = %3d", data->size_y, data->size_x , y, x, data->map[y][x].new_x, data->map[y][x].new_y);
-			//printf("\nmap[%2d][%2d] = %4d %4d ", y, x, data->map[y][x].new_y, data->map[y][x].new_x);
 			if (y + 2 <= data->size_y)
 				draw_y(data, x, y);
 			if (x + 2 <= data->size_x)

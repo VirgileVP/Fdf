@@ -6,7 +6,7 @@
 /*   By: vveyrat- <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/02 20:47:59 by vveyrat-     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/24 15:31:52 by vveyrat-    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/06 16:15:42 by vveyrat-    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,18 +25,19 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+char			*ft_alltoa(long long nb);
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
+int				ft_facto(int n);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
 int				ft_isprint(int c);
 int				ft_incharset(char c, const char *charset);
+int				ft_is_strdigit(char *str);
 char			*ft_itoa(int c);
 char			*ft_itoa_base(int value, int base);
-char			*ft_ultoa_base(unsigned long value, int base);
-char			*ft_alltoa(long long nb);
 void			*ft_memalloc(size_t size);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memchr(const void *s, int c, size_t n);
@@ -45,6 +46,7 @@ void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			ft_memdel(void **ap);
 void			*ft_memmove(void *dst, const void *src, size_t n);
 void			*ft_memset(void *b, int c, size_t n);
+int				ft_power(int n, int p);
 void			ft_putchar(char c);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putendl(char const *s);
@@ -93,6 +95,8 @@ void			ft_strmove(char *begin_str, char *new_begin);
 char			ft_to_ascii(int c);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
+char			*ft_ultoa_base(unsigned long value, int base);
+
 
 /*
  **BONUS

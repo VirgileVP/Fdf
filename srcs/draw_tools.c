@@ -4,7 +4,7 @@ void		put_pixel(t_fdf *data, int x, int y , int height)
 {
 	int		index;
 
-	if (x >= 0 && x <= WIND_X && y >= 0 && y <= WIND_Y)
+	if (x >= 0 && x <= WIND_X && y >= 0 && y < WIND_Y)
 	{
 		index = y * WIND_X + x;
 		data->image[index] = height;

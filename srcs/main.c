@@ -1,30 +1,21 @@
-#include "Fdf.h"
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   main.c                                           .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: vveyrat- <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/06/11 14:57:12 by vveyrat-     #+#   ##    ##    #+#       */
+/*   Updated: 2019/06/11 14:57:14 by vveyrat-    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
 
-int		main(int ac, char **av)
+#include "fdf.h"
+
+void	init_struct(t_fdf *data)
 {
-	t_fdf	*data;
-	int		fd;
-
-	fd = 0;
-	if (ac != 2)
-		perror("Specify a map.");
-	if ((fd = open(av[1], O_RDONLY)) == -1)
-	{
-		perror("Impossible to open file.");
-		exit(0);
-	}
-	if (!(data = malloc(sizeof(t_fdf) + 1)))
-		return (0);
-	if (read_map(data, fd) == -1)
-	{
-		free(data->map);
-		free(data);
-		perror("Reading failed.");
-		exit(0);
-	}
 	data->projection = 1;
-	data->x_rot = 0;
-	data->y_rot = 0;
 	data->x_move = 0;
 	data->y_move = 0;
 	data->speed = 1;
@@ -39,15 +30,48 @@ int		main(int ac, char **av)
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WIND_X, WIND_Y, "FDF  VVEYRAT-");
-
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIND_X, WIND_Y,
+	"fdf  VVEYRAT-");
 	data->img_ptr = mlx_new_image(data->mlx_ptr, WIND_X, WIND_Y);
-	data->image = mlx_get_data_addr(data->img_ptr, &(data->bpp), &(data->s_l), &(data->endian));
+	data->image = mlx_get_data_addr(data->img_ptr, &(data->bpp), &(data->s_l),
+	&(data->endian));
+}
 
+void	fdf(t_fdf *data)
+{
 	draw_map(data);
 	mlx_hook(data->win_ptr, 2, 0, key_event, data);
 	mlx_hook(data->win_ptr, 4, 0, mouse_event, data);
+	mlx_hook(data->win_ptr, 17, 0, free_and_escape, data);
 	mlx_loop(data->mlx_ptr);
-	exit(0);
+}
+
+int		main(int ac, char **av)
+{
+	t_fdf	data;
+	int		fd;
+
+/*	if (ac != 2)
+	{
+		perror("Specify a map.");
+		exit(1);
+	}*/
+	fd = open(av[1], O_RDONLY);
+	printf("fd = %d\n", fd);
+	/*if (fd < 0)
+	{
+		perror("Impossible to open file.");
+		exit(1);
+	}*/
+	/*if (read_map(&data, fd) == -1)
+	{
+		ft_memdel((void**)data.map);
+		ft_memdel((void**)&data);
+		perror("Reading failed.");
+		exit(1);
+	}
+	init_struct(&data);
+	fdf(&data);
+	close(fd);*/
 	return (0);
 }

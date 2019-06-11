@@ -2,7 +2,7 @@ NAME = fdf
 
 
 CC = GCC
-CFLAGS =  -g -fsanitize=address
+CFLAGS = 
 CPPFLAGS = -I ./includes -I ./libft -I ./minilibx_macos
 
 LIB = libft/libft.a
@@ -14,11 +14,11 @@ SRC_DIR = ./srcs/
 SRC = main.c \
 	  draw_tools.c \
 	  draw_map.c \
-	  3d_to_2d.c \
-	  rotate.c \
+	  transform_3d_to_2d.c \
 	  parsing.c \
-	  HUD.c \
-	  events.c \
+	  hud.c \
+	  which_event.c \
+	  key_events.c \
 	  mouse_event.c \
 	  free_and_exit.c
 

@@ -1,9 +1,23 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   define.h                                         .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: vveyrat- <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/06/11 15:45:32 by vveyrat-     #+#   ##    ##    #+#       */
+/*   Updated: 2019/06/11 15:45:36 by vveyrat-    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #ifndef DEFINE_H
 # define DEFINE_H
 
 # define WIND_X 1400
 # define WIND_Y 1150
-# define BORDURE -10000
+
+# define TEXT 0xcccccc
 
 # define ESC 53
 # define LEFT 123
@@ -16,8 +30,11 @@
 # define S 1
 # define D 2
 # define F 3
+# define Z 6
 # define C 8
+# define Q 12
 # define W 13
+# define E 14
 # define R 15
 # define I 34
 # define P 35
@@ -33,17 +50,5 @@
 # define KEY_7 89
 # define KEY_8 90
 # define KEY_9 91
-/*
-# define WHITE 
-# define HOT_WARM 
-# define RED 
-# define GREEN 
-# define BLUE 
-# define ORANGE 
-# define CYAN 
-# define PURPLE 
-# define COLD_BLUE 
-*/
-
 
 #endif

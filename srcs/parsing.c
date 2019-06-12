@@ -13,111 +13,92 @@
 
 #include "fdf.h"
 
-int		size_y(char *read)
+void		manage_height(t_fdf *data, char *read, t_coord *coord, int *index)
 {
-	int index;
-	int	ret;
-
-	index = 0;
-	ret = 0;
-	while (read[index])
+	if (ft_isdigit(read[*index]) || read[*index] == '-')
 	{
-		if (read[index] == '\n')
-			ret++;
-		index++;
+		data->map[coord->y][coord->x].height = (double)ft_atoi(&read[*index]);
+		data->map[coord->y][coord->x].no_height =
+		(data->map[coord->y][coord->x].height == 0) ? 1 : 0;
+		*index += ft_intlenght(ft_atoi(&read[*index])) - 1;
+		coord->x++;
 	}
-	return (ret);
 }
 
-int		init_tab(t_fdf *data, char *read)
+int			to_int_tab(t_fdf *data, char *read)
 {
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	data->size_y = size_y(read);
-	data->map = NULL;
-	if (!(data->map = (t_pixel **)malloc(sizeof(t_pixel*) * data->size_y + 1)))
-		return (-1);
-	while (y < data->size_y)
-	{
-		data->map[y] = NULL;
-		if (!(data->map[y] = (t_pixel *)malloc(sizeof(t_pixel) * data->size_x + 1)))
-			return (-1);
-		x = 0;
-		while (x < data->size_x)
-		{
-			data->map[y][x].height = 0;
-			data->map[y][x].new_x = 0;
-			data->map[y][x].new_y = 0;
-			x++;
-		}
-		y++;
-	}
-	return (0);
-}
-
-int		to_int_tab(t_fdf *data, char *read)
-{
-	int index;
-	int	x;
-	int	y;
-	int test = 0;
+	int		index;
+	t_coord	coord;
 
 	index = 0;
-	x = 0;
-	y = 0;
+	coord.x = 0;
+	coord.y = 0;
 	if (init_tab(data, read) == -1)
 		return (-1);
-	while(read[index])
+	while (read[index])
 	{
-		if (!ft_isdigit(read[index]) && read[index] != '-' && read[index] != ' ' && read[index] != '\n')
+		if (!ft_isdigit(read[index]) && read[index] != '-'
+		&& read[index] != ' ' && read[index] != '\n')
 			return (-1);
 		if (read[index] == '\n')
 		{
-			x = 0;
-			y++;
+			coord.x = 0;
+			coord.y++;
 		}
-		if (ft_isdigit(read[index]) || read[index] == '-')
-		{
-			data->map[y][x].height = (double)ft_atoi(&read[index]);
-			if (data->map[y][x].height == 0)
-				data->map[y][x].no_height = 1;
-			index += ft_intlenght(ft_atoi(&read[index])) - 1;
-			x++;
-		}
+		manage_height(data, read, &coord, &index);
 		index++;
 	}
 	return (1);
 }
 
-int		read_map(t_fdf *data, int fd)
+char		*read_map2(t_fdf *data, int fd, char *line, char *temp)
 {
-	char		*line;
-	char		*temp;
-
-	line = NULL;
-	if (!(temp = malloc(sizeof(char) + 1)))
-		return (-1);
-	ft_bzero(temp, 1);
-	get_next_line(fd, &line);
-	data->size_x = ft_count_words(line, ' ');
-	temp = ft_fstrjoin(&temp, &line, 0, 1);
-	temp = ft_fstrjoin_end(&temp, "\n");
-	while (get_next_line(fd, &line))
+	while (get_next_line(fd, &line) == 1)
 	{
 		if ((int)ft_count_words(line, ' ') != data->size_x)
 		{
 			ft_strdel(&temp);
 			ft_strdel(&line);
-			return (-1);
+			return (NULL);
 		}
-		temp = ft_fstrjoin(&temp, &line, 0, 1);
-		temp = ft_fstrjoin_end(&temp, "\n");
+		if (!(temp = ft_fstrjoin(&temp, &line, 0, 1)))
+			return (NULL);
+		if (!(temp = ft_fstrjoin_end(&temp, "\n")))
+			return (NULL);
 	}
+	return (temp);
+}
+
+int			read_map(t_fdf *data, int fd)
+{
+	char	*line;
+	char	*temp;
+
+	if (!(temp = malloc(sizeof(char) + 1)))
+		return (-1);
+	ft_bzero(temp, 1);
+	get_next_line(fd, &line);
+	data->size_x = ft_count_words(line, ' ');
+	if (!(temp = ft_fstrjoin(&temp, &line, 0, 1)))
+		return (-1);
+	if (!(temp = ft_fstrjoin_end(&temp, "\n")))
+		return (-1);
+	if (!(temp = read_map2(data, fd, line, temp)))
+		return (-1);
 	if (to_int_tab(data, temp) == -1)
 		return (-1);
+	
+	
+	int y;
+	y = 0;
+	printf("map = %20p\n", data->map);
+	while (y < data->size_y)
+	{
+		printf("map[%2d] : %16p\n", y, data->map[y]);
+		y++;
+	}
+	printf("temp : %19p\n", temp);
 	ft_strdel(&temp);
+	ft_strdel(&line);
 	return (1);
 }

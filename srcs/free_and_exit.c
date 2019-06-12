@@ -13,29 +13,19 @@
 
 #include "fdf.h"
 
-void	all_free(t_fdf *data)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	x = 0;
-	if (data->map)
-	{
-		while (y < data->size_y)
-		{
-			//ft_memdel((void*)data->map[y]);
-			y++;
-		}
-		ft_memdel((void**)data->map);
-	}
-	ft_memdel((void*)data);
-	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
-}
-
 int		free_and_escape(t_fdf *data)
 {
-	all_free(data);
+	int y;
+
+	y = 0;
+	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
+	while (y < data->size_y)
+	{
+		printf("address : %p\n", data->map[y]);
+		free(data->map[y]);
+		y++;
+	}
+	free(data->map);
 	exit(0);
 	return (0);
 }

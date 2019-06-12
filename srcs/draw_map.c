@@ -69,6 +69,16 @@ void		printing(t_fdf *data)
 	data->invert_height = 0;
 }
 
+void		manage_image(t_fdf *data)
+{
+	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
+	data->img_ptr = mlx_new_image(data->mlx_ptr, WIND_X, WIND_Y);
+	data->image = mlx_get_data_addr(data->img_ptr, &(data->bpp), &(data->s_l),
+	&(data->endian));
+	if (data->invert_height == 1)
+		invert_height(data);
+}
+
 void		draw_map(t_fdf *data)
 {
 	int		x;
@@ -77,15 +87,13 @@ void		draw_map(t_fdf *data)
 
 	x = 0;
 	y = 0;
-	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
-	data->img_ptr = mlx_new_image(data->mlx_ptr, WIND_X, WIND_Y);
-	data->image = mlx_get_data_addr(data->img_ptr, &(data->bpp), &(data->s_l), &(data->endian));
-	if (data->invert_height == 1)
-		invert_height(data);
+	manage_image(data);
 	hud(data);
-	data->screen_max = (WIND_X <= WIND_Y - 150) ? WIND_Y - 150 : WIND_X ;
-	space.x = data->zoom + (data->screen_max - (data->screen_max * 0.5)) / data->size_x;
-	space.y = data->zoom + (data->screen_max - (data->screen_max * 0.5)) / data->size_x;
+	data->screen_max = (WIND_X <= WIND_Y - 150) ? WIND_Y - 150 : WIND_X;
+	space.x = data->zoom + (data->screen_max - (data->screen_max * 0.5))
+	/ data->size_x;
+	space.y = data->zoom + (data->screen_max - (data->screen_max * 0.5))
+	/ data->size_x;
 	while (y < data->size_y)
 	{
 		x = 0;

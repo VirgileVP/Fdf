@@ -20,13 +20,13 @@ void	key_move(t_fdf *data, int key)
 	if (key == MORE)
 		data->speed++;
 	if (key == A || key == Q || key == Z)
-		data->x_move -= data->speed;
-	if (key == W || key == Q || key == E)
-		data->y_move -= data->speed;
-	if (key == D || key == C || key == E)
 		data->x_move += data->speed;
-	if (key == S || key == Z || key == C)
+	if (key == W || key == Q || key == E)
 		data->y_move += data->speed;
+	if (key == D || key == C || key == E)
+		data->x_move -= data->speed;
+	if (key == S || key == Z || key == C)
+		data->y_move -= data->speed;
 	draw_map(data);
 }
 

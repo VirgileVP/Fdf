@@ -51,27 +51,25 @@ int		main(int ac, char **av)
 	t_fdf	data;
 	int		fd;
 
-/*	if (ac != 2)
+	if (ac != 2)
 	{
-		perror("Specify a map.");
+		perror("Specify one map.\nUsage : ./fdf [map]\n");
 		exit(1);
-	}*/
-	fd = open(av[1], O_RDONLY);
-	printf("fd = %d\n", fd);
-	/*if (fd < 0)
+	}
+	if (((fd = open(av[1], O_DIRECTORY)) != -1) ||
+	((fd = open(av[1], O_RDONLY)) < 0))
 	{
-		perror("Impossible to open file.");
+		perror("Impossible to open file.\n");
 		exit(1);
-	}*/
-	/*if (read_map(&data, fd) == -1)
+	}
+	if (read_map(&data, fd) == -1)
 	{
-		ft_memdel((void**)data.map);
-		ft_memdel((void**)&data);
-		perror("Reading failed.");
+		close(fd);
+		perror("Reading failed.\n");
 		exit(1);
 	}
 	init_struct(&data);
 	fdf(&data);
-	close(fd);*/
+	close(fd);
 	return (0);
 }

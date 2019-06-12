@@ -16,7 +16,7 @@
 int		key_event(int key, t_fdf *data)
 {
 	if (key == ESC)
-		return (free_and_escape(data));
+		free_and_escape(data);
 	if (key == LESS || key == MORE)
 		key_move(data, key);
 	if (key == W || key == A || key == S || key == D || key == Q || key == E

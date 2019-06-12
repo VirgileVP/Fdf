@@ -12,10 +12,11 @@ OBJ_DIR = ./objs/
 SRC_DIR = ./srcs/
 
 SRC = main.c \
+	  parsing.c \
+	  parsing_tools.c \
 	  draw_tools.c \
 	  draw_map.c \
 	  transform_3d_to_2d.c \
-	  parsing.c \
 	  hud.c \
 	  which_event.c \
 	  key_events.c \

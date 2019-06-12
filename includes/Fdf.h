@@ -74,6 +74,7 @@ typedef struct		s_fdf
 }					t_fdf;
 
 int					read_map(t_fdf *fdf, int fd);
+int					init_tab(t_fdf *data, char *read);
 void				hud(t_fdf *data);
 void				draw_line(t_fdf *fdf, t_coord p0, t_coord p1);
 void				draw_map(t_fdf *data);

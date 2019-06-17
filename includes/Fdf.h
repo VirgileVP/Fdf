@@ -16,11 +16,8 @@
 # include "libft.h"
 # include "mlx.h"
 # include "define.h"
-# include <stdio.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
 # include <math.h>
+# include <fcntl.h>
 
 typedef struct		s_line_draw
 {
@@ -86,10 +83,10 @@ void				hud_text(t_fdf *data);
 int					key_event(int key, t_fdf *data);
 void				key_move(t_fdf *data, int key);
 void				key_height(t_fdf *data, int key);
-void				key_filter(t_fdf *data, int key);
+void				key_filter(t_fdf *data);
 void				key_color(t_fdf *data, int key);
-void				key_projection(t_fdf *data, int key);
-int					mouse_event(int key, int x, int y, t_fdf *data);
+void				key_projection(t_fdf *data);
+int					mouse_event(int key, t_fdf *data);
 void				put_pixel(t_fdf *data, int x, int y);
 int					free_and_escape(t_fdf *data);
 

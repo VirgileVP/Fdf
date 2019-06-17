@@ -13,7 +13,7 @@
 
 #include "fdf.h"
 
-int		mouse_event(int key, int x, int y, t_fdf *data)
+int		mouse_event(int key, t_fdf *data)
 {
 	if (key == SCROLL_UP)
 		data->zoom++;

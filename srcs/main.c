@@ -53,19 +53,19 @@ int		main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		perror("Specify one map.\nUsage : ./fdf [map]\n");
+		ft_putstr("Specify one map.\nUsage : ./fdf [map]\n");
 		exit(1);
 	}
 	if (((fd = open(av[1], O_DIRECTORY)) != -1) ||
 	((fd = open(av[1], O_RDONLY)) < 0))
 	{
-		perror("Impossible to open file.\n");
+		ft_putstr("Impossible to open file.\n");
 		exit(1);
 	}
 	if (read_map(&data, fd) == -1)
 	{
 		close(fd);
-		perror("Reading failed.\n");
+		ft_putstr("Reading failed.\n");
 		exit(1);
 	}
 	init_struct(&data);

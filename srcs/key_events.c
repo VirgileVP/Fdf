@@ -43,7 +43,7 @@ void	key_height(t_fdf *data, int key)
 	draw_map(data);
 }
 
-void	key_filter(t_fdf *data, int key)
+void	key_filter(t_fdf *data)
 {
 	if (data->filter == 3)
 		data->filter = 0;
@@ -69,7 +69,7 @@ void	key_color(t_fdf *data, int key)
 	draw_map(data);
 }
 
-void	key_projection(t_fdf *data, int key)
+void	key_projection(t_fdf *data)
 {
 	if (data->projection == 2)
 		data->projection = 1;

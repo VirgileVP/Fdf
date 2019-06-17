@@ -25,9 +25,9 @@ int		key_event(int key, t_fdf *data)
 	if (key == R || key == F || key == I)
 		key_height(data, key);
 	if (key == DOT)
-		key_filter(data, key);
+		key_filter(data);
 	if (key == P)
-		key_projection(data, key);
+		key_projection(data);
 	if (key >= KEY_1 && key <= KEY_6)
 		key_color(data, key);
 	return (0);

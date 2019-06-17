@@ -37,6 +37,8 @@ int			to_int_tab(t_fdf *data, char *read)
 		return (-1);
 	while (read[index])
 	{
+		ft_putchar(read[index]);
+		ft_putchar('\n');
 		if (!ft_isdigit(read[index]) && read[index] != '-'
 		&& read[index] != ' ' && read[index] != '\n')
 			return (-1);

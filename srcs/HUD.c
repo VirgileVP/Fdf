@@ -18,6 +18,26 @@ void		put_text(t_fdf *data, int x, int y, char *str)
 	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, TEXT, str);
 }
 
+void		print_color(t_fdf *data)
+{
+	char	*temp;
+
+	temp = NULL;
+	temp = ft_itoa(data->r);
+	put_text(data, 250, 125, "R=");
+	put_text(data, 270, 125, temp);
+	ft_memdel((void**)&temp);
+	temp = ft_itoa(data->g);
+	put_text(data, 310, 125, "G=");
+	put_text(data, 330, 125, temp);
+	ft_memdel((void**)&temp);
+	temp = ft_itoa(data->b);
+	put_text(data, 370, 125, "B=");
+	put_text(data, 390, 125, temp);
+	ft_memdel((void**)&temp);
+	put_text(data, 1200, 100, "Quit : ESC");
+}
+
 void		print_text(t_fdf *data)
 {
 	put_text(data, 5, 5, "Change filter : .");
@@ -31,13 +51,7 @@ void		print_text(t_fdf *data)
 	put_text(data, 1200, 5, "Projection : P");
 	put_text(data, 5, 100, "Zoom : scroll");
 	put_text(data, 250, 100, "Color : 1/2/3/4/5/6");
-	put_text(data, 250, 125, "R=");
-	put_text(data, 270, 125, ft_itoa(data->r));
-	put_text(data, 310, 125, "G=");
-	put_text(data, 330, 125, ft_itoa(data->g));
-	put_text(data, 370, 125, "B=");
-	put_text(data, 390, 125, ft_itoa(data->b));
-	put_text(data, 1200, 100, "Quit : ESC");
+	print_color(data);
 }
 
 void		hud_text(t_fdf *data)
@@ -63,9 +77,10 @@ void		hud_text(t_fdf *data)
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 330, 30, TEXT, speed);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 1200, 30, TEXT, projection);
 	print_text(data);
+	ft_memdel((void**)&speed);
 }
 
-void		background(t_fdf *data)
+void		hud(t_fdf *data)
 {
 	int		index;
 
@@ -86,12 +101,4 @@ void		background(t_fdf *data)
 		data->image[index + 2] = 20;
 		data->image[index + 3] = 0;
 	}
-}
-
-void		hud(t_fdf *data)
-{
-	t_coord	p1;
-	t_coord	p2;
-
-	background(data);
 }

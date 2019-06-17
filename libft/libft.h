@@ -6,7 +6,7 @@
 /*   By: vveyrat- <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/02 20:47:59 by vveyrat-     #+#   ##    ##    #+#       */
-/*   Updated: 2019/06/06 16:15:42 by vveyrat-    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/06/13 13:28:02 by vveyrat-    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -96,7 +96,6 @@ char			ft_to_ascii(int c);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 char			*ft_ultoa_base(unsigned long value, int base);
-
 
 /*
  **BONUS

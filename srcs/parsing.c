@@ -57,11 +57,11 @@ char		*read_map2(t_fdf *data, int fd, char *line, char *temp)
 	{
 		if ((int)ft_count_words(line, ' ') != data->size_x)
 		{
-			ft_strdel(&temp);
-			ft_strdel(&line);
+			ft_memdel((void**)&temp);
+			ft_memdel((void**)&line);
 			return (NULL);
 		}
-		if (!(temp = ft_fstrjoin(&temp, &line, 0, 1)))
+		if (!(temp = ft_fstrjoin(&temp, &line, 1, 1)))
 			return (NULL);
 		if (!(temp = ft_fstrjoin_end(&temp, "\n")))
 			return (NULL);
@@ -79,7 +79,7 @@ int			read_map(t_fdf *data, int fd)
 	ft_bzero(temp, 1);
 	get_next_line(fd, &line);
 	data->size_x = ft_count_words(line, ' ');
-	if (!(temp = ft_fstrjoin(&temp, &line, 0, 1)))
+	if (!(temp = ft_fstrjoin(&temp, &line, 1, 1)))
 		return (-1);
 	if (!(temp = ft_fstrjoin_end(&temp, "\n")))
 		return (-1);
@@ -87,18 +87,7 @@ int			read_map(t_fdf *data, int fd)
 		return (-1);
 	if (to_int_tab(data, temp) == -1)
 		return (-1);
-	
-	
-	int y;
-	y = 0;
-	printf("map = %20p\n", data->map);
-	while (y < data->size_y)
-	{
-		printf("map[%2d] : %16p\n", y, data->map[y]);
-		y++;
-	}
-	printf("temp : %19p\n", temp);
-	ft_strdel(&temp);
-	ft_strdel(&line);
+	ft_memdel((void**)&temp);
+	ft_memdel((void**)&line);
 	return (1);
 }

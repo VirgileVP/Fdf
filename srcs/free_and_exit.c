@@ -15,17 +15,8 @@
 
 int		free_and_escape(t_fdf *data)
 {
-	int y;
-
-	y = 0;
 	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
-	while (y < data->size_y)
-	{
-		printf("address : %p\n", data->map[y]);
-		free(data->map[y]);
-		y++;
-	}
-	free(data->map);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	exit(0);
 	return (0);
 }

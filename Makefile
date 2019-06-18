@@ -2,7 +2,7 @@ NAME = fdf
 
 
 CC = GCC
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 CPPFLAGS = -I ./includes -I ./libft -I ./minilibx_macos
 
 LIB = libft/libft.a

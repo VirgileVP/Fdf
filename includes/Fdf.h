@@ -86,7 +86,7 @@ void				key_height(t_fdf *data, int key);
 void				key_filter(t_fdf *data);
 void				key_color(t_fdf *data, int key);
 void				key_projection(t_fdf *data);
-int					mouse_event(int key, t_fdf *data);
+int					mouse_event(int key, int x, int y, t_fdf *data);
 void				put_pixel(t_fdf *data, int x, int y);
 int					free_and_escape(t_fdf *data);
 

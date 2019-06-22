@@ -27,6 +27,8 @@ Horizontal and vertical moves : WASD
 
 Diagonal moves : QEZC
 
+Moving speed : + -
+
 Change colors : R-> 1 4   G-> 2 5   B-> 3 6
 
 Change height : R F

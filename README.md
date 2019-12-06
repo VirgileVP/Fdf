@@ -1,5 +1,7 @@
 # Fdf
 
+(multi-threading is coming .....)
+
 This is the first 42 graphic project.
 
 Using MinilibX.
